@@ -19,6 +19,73 @@ body {
     background-color: #f5f5f5 !important;
 }
 
+.login-container {
+    width: 400px;
+    background-color: #fff;
+    margin: 300px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.login-container input[type="text"] {
+    margin-left: 7px;
+    width: 70%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.login-container input[type="password"] {
+    margin-left: 10px;
+    width: 70%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #8f9397;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.login-container button:hover {
+    background-color: #a3a3a3;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+#content {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 600px;
+}
+
 #nav-main-wrapper {
     display: flex;
     justify-content: flex-start;
@@ -261,7 +328,6 @@ nav div {
 
 #searchInput {
     position: absolute;
-    left: -34px;
     width: 100%;
     top: -10px;
     padding-left: 65px;
@@ -391,7 +457,7 @@ nav div {
     font-size: 30px;
 } */
 
-input[type="text"] {
+#form-section input[type="text"], #searchInput {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -632,6 +698,27 @@ input[type="text"] {
         margin-bottom: 30px;
     }
 
+    #searchInput {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 364px;
+        min-height: 58px;
+        margin-top: 1%;
+        border: none;
+        border-radius: 13px;
+        padding: 0 2%;
+        font-size: 16px;
+        font-family: sans-serif;
+        box-sizing: border-box;
+        margin-left: 6%;
+        margin-right: 3%;
+        background: none;
+        border: none;
+        box-shadow: none;
+        appearance: none;
+    }
+
     /* #conteiner {
         width: 100%;
         margin-top: 20px;
@@ -650,7 +737,6 @@ input[type="text"] {
 
     #searchInput {
         position: absolute;
-        left: -34px;
         width: 100%;
         top: -5px;
         padding-left: 65px;
