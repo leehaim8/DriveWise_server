@@ -35,3 +35,12 @@ function displayUserSpecificData(userData, userType) {
     }
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".logoutButton").forEach(button => {
+        button.addEventListener("click", function(event) {
+            event.preventDefault();
+            sessionStorage.clear();
+            window.location.href = "login.html";
+        });
+    });
+});
