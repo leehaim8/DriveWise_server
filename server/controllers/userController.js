@@ -18,7 +18,22 @@ const userController = {
                 res.status(404).json({ error: 'User not found' });
             }
         } catch (error) {
-            console.error("Error in getUser:", error); // הוסף הדפסות שגיאה
+            console.error("Error in getUser:", error);
+            res.status(500).json({ message: "Internal server error" });
+        } finally {
+            if (connection) {
+                connection.end();
+            }
+        }
+    },
+    async getStudents(req, res) {
+        let connection;
+        try {
+            connection = await dbConnection.createConnection();
+            const [rows] = await connection.execute(`SELECT user_id, user_first_name, user_last_name FROM ${TABLE_NAME}_users WHERE user_type = 'student'`);
+            res.json(rows);
+        } catch (error) {
+            console.error("Error in getStudents:", error);
             res.status(500).json({ message: "Internal server error" });
         } finally {
             if (connection) {
