@@ -40,6 +40,12 @@ function render(data) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    user_type = sessionStorage.getItem("user_type");
+    if (user_type === "Teacher") {
+        document.getElementById("edit-btn").hidden = false;
+    } else {
+        document.getElementById("edit-btn").hidden = true;
+    }
     document.getElementById("edit-btn").addEventListener("click", function () {
         window.location.href = `./editSimulation.html?simulationid=${simulationId}`;
     });

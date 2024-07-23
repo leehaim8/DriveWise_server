@@ -8,13 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-
 document.addEventListener("DOMContentLoaded", async function() {
     const userId = sessionStorage.getItem('user_id');
     const userType = sessionStorage.getItem('user_type');
 
-    const response = await fetch(`http://127.0.0.1:8080/api/users/${userId}`
-    );
+    const response = await fetch(`http://127.0.0.1:8080/api/users/${userId}`);
     const userData = await response.json();
     displayUserSpecificData(userData, userType);
 });
@@ -28,10 +26,11 @@ function displayUserSpecificData(userData, userType) {
         feedbackElements.forEach(el => el.hidden = true);
         addSimulationElements.forEach(el => el.hidden = false);
         studentsElements.forEach(el => el.hidden = false);
-    } else {
+    } else if (userType === 'Student') {
         feedbackElements.forEach(el => el.hidden = false);
         addSimulationElements.forEach(el => el.hidden = true);
         studentsElements.forEach(el => el.hidden = true);
+        document.getElementById("rectangale-change").innerText = "Feedback";
     }
 }
 

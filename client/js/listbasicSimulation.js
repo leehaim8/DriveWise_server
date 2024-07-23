@@ -8,6 +8,8 @@ const render = (data) => {
         renderElement.classList.add("render");
     }
 
+    const userType = sessionStorage.getItem("user_type");
+
     if (data.length > 0) {
         data.forEach((simul) => {
             const parentSection = document.createElement("section");
@@ -23,6 +25,17 @@ const render = (data) => {
             const simulIcons = document.createElement("div");
             simulIcons.classList.add("simul-icons");
             parentSection.appendChild(simulIcons);
+
+            if (userType === "Teacher") {
+                const deleteBtn = document.createElement("button");
+                deleteBtn.classList.add("simul-one-icon");
+                deleteBtn.classList.add("delete-icon-simulation");
+                deleteBtn.addEventListener("click", () =>
+                    handleDeleteSimulation(simul.id)
+                );
+                simulIcons.appendChild(deleteBtn);
+            }
+
             const simulVrIcon = document.createElement("div");
             simulVrIcon.classList.add("simul-one-icon");
             simulVrIcon.classList.add("vr-icon-simulation");
@@ -32,20 +45,13 @@ const render = (data) => {
             linkToSimul.classList.add("simul-one-icon");
             linkToSimul.classList.add("eye-icon-simulation");
             simulIcons.appendChild(linkToSimul);
-            const deleteBtn = document.createElement("button");
-            deleteBtn.classList.add("simul-one-icon");
-            deleteBtn.classList.add("delete-icon-simulation");
-            deleteBtn.addEventListener("click", () =>
-                handleDeleteSimulation(simul.id)
-            );
-            simulIcons.appendChild(deleteBtn);
             renderElement.appendChild(parentSection);
         });
         root.appendChild(renderElement);
     }
 };
 
-window.onload = loadPage();
+window.onload = loadPage;
 let new_data = [];
 
 const searchInput = document.querySelector("#searchInput");
