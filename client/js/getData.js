@@ -1,20 +1,24 @@
 async function getFunc(id) {
-    const response = await fetch(id ? `http://127.0.0.1:8080/api/simulations/${id}` : `http://127.0.0.1:8080/api/simulations`, {
+    const userId = sessionStorage.getItem("user_id");
+    const url = id
+        ? `http://127.0.0.1:8080/api/simulations/${id}?user_id=${userId}` : `http://127.0.0.1:8080/api/simulations?user_id=${userId}`;
+
+    const response = await fetch(url, {
         method: "GET",
         headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            access_token: sessionStorage.getItem("access_token"),
-        }),
+            "Content-Type": "application/json"
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
     }
-    );
 
     return await response.json();
 }
 
 async function updateFunc(id, data) {
-    const response = await fetch(`http://127.0.0.1:8080/api/simulations/${id}`, {
+    const response = await fetch(`http://127.0.0.1:8080/api/simulations/${id}?user_id=${userId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
