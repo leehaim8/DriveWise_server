@@ -23,7 +23,7 @@ const renderStudents = (data) => {
             studentIcons.classList.add("student-icons");
 
             const feedbackLink = document.createElement("a");
-            feedbackLink.href = `./feedback.html?studentId=${student.user_id}`;
+            feedbackLink.href = `./feedbackForm.html?studentId=${student.user_id}`;
             feedbackLink.classList.add("feedback-icon");
             feedbackLink.textContent = "Feedback";
             studentIcons.appendChild(feedbackLink);
