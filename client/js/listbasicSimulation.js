@@ -48,6 +48,8 @@ const render = (data) => {
             renderElement.appendChild(parentSection);
         });
         root.appendChild(renderElement);
+
+        console.log(simul.id);
     }
 };
 
