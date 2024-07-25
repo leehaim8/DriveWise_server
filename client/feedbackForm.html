@@ -11,6 +11,8 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="./include/range-slider.js" defer></script>
+    <link rel="stylesheet" href="./include/range-slider.min.css">
     <script src="./js/script.js" defer></script>
     <script src="./js/feedbackForm.js" defer></script>
     <link rel="stylesheet" href="./css/style.css">
@@ -181,30 +183,41 @@
                             <label for="lesson-topic">Lesson Topic:</label>
                             <input type="text" id="lesson-topic" name="lessonTopic" required>
 
+                            <label for="lesson-grade">Lesson Grade:</label>
+                            <input type="number" id="lesson-grade" name="lessonGrade" min="0" max="100" required>
+
                             <label for="reverse-parking">Reverse Parking:</label>
-                            <input type="range" id="reverse-parking" name="reverseParking" min="0" max="100">
+                            <input type="hidden" id="reverse-parking" name="reverseParking" min="0" max="100">
+                            <div id="reverse-parking-slider"></div>
 
                             <label for="parallel-parking">Parallel Parking:</label>
-                            <input type="range" id="parallel-parking" name="parallelParking" min="0" max="100">
-
-                            <label for="diagonal-parking">Diagonal Parking:</label>
-                            <input type="range" id="diagonal-parking" name="diagonalParking" min="0" max="100">
+                            <input type="hidden" id="parallel-parking" name="parallelParking" min="0" max="100">
+                            <div id="parallel-parking-slider"></div>
                         </section>
                         <section id="second-row">
+                            <label for="diagonal-parking">Diagonal Parking:</label>
+                            <input type="hidden" id="diagonal-parking" name="diagonalParking" min="0" max="100">
+                            <div id="diagonal-parking-slider"></div>
+
                             <label for="merging-traffic">Merging in Traffic:</label>
-                            <input type="range" id="merging-traffic" name="mergingTraffic" min="0" max="100">
+                            <input type="hidden" id="merging-traffic" name="mergingTraffic" min="0" max="100">
+                            <div id="merging-traffic-slider"></div>
 
                             <label for="overtaking">Overtaking:</label>
-                            <input type="range" id="overtaking" name="overtaking" min="0" max="100">
+                            <input type="hidden" id="overtaking" name="overtaking" min="0" max="100">
+                            <div id="overtaking-slider"></div>
 
                             <label for="one-way-street">One-way Street:</label>
-                            <input type="range" id="one-way-street" name="oneWayStreet" min="0" max="100">
+                            <input type="hidden" id="one-way-street" name="oneWayStreet" min="0" max="100">
+                            <div id="one-way-street-slider"></div>
 
                             <label for="two-way-street">Two-way Street:</label>
-                            <input type="range" id="two-way-street" name="twoWayStreet" min="0" max="100">
+                            <input type="hidden" id="two-way-street" name="twoWayStreet" min="0" max="100">
+                            <div id="two-way-street-slider"></div>
 
                             <label for="proper-turning">Proper Turning:</label>
-                            <input type="range" id="proper-turning" name="properTurning" min="0" max="100">
+                            <input type="hidden" id="proper-turning" name="properTurning" min="0" max="100">
+                            <div id="proper-turning-slider"></div>
                         </section>
                     </section>
                     <section id="comment">

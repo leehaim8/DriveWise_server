@@ -19,6 +19,20 @@ body {
     background-color: #f5f5f5 !important;
 }
 
+.rs-theme-custom .rs-progress,
+.rs-theme-custom .rs-progress::before {
+    background: gray;
+}
+
+.rs-theme-custom .rs-handle {
+    background: grey;
+}
+
+.rs-theme-custom.rs-design-2d .rs-progress,
+.rs-theme-custom.rs-design-2d .rs-progress::before {
+    background: gray;
+}
+
 .feedback-form {
     display: flex;
     margin-left: 40px;
@@ -37,8 +51,8 @@ body {
     border: 1px solid #ccc;
 }
 
-.feedback-form #second-row input{
-    width: 130%;
+.feedback-form #second-row {
+    width: 18%;
 }
 
 #comment {
@@ -48,6 +62,7 @@ body {
     width: 60%;
     margin-left: 41px;
     margin-bottom: 30px;
+    margin-top: 15px;
 }
 
 #comment textarea {

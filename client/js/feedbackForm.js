@@ -1,6 +1,6 @@
 const url = new URL(window.location.href);
 const userId = url.searchParams.get('studentId');
-
+let RangeList = [];
 function validateFeedback(event) {
     event.preventDefault();
 
@@ -13,6 +13,7 @@ function validateFeedback(event) {
     let data = {
         lessonNumber: form.elements["lessonNumber"].value,
         lessonTopic: form.elements["lessonTopic"].value,
+        grade: form.elements["lessonGrade"].value,
         reverseParking: form.elements["reverseParking"].value,
         parallelParking: form.elements["parallelParking"].value,
         diagonalParking: form.elements["diagonalParking"].value,
@@ -78,6 +79,35 @@ async function sendFeedbackToServer(data) {
     }
 }
 
+function setupRangeInput() {
+    const rangeInputs = document.querySelectorAll("input[type='hidden']");
+    rangeInputs.forEach((rangeInput) => {
+        const rangeDiv = document.getElementById(`${rangeInput.id}-slider`);
+        const rangeObject = new RangeSlider(rangeDiv, {
+            step: 1,
+            min: 0,
+            max: 100,
+            value: 50,
+            unit: "",
+            width: "75%",
+            design: "2d",
+            showMinMaxLabels: true,
+            showCurrentValueLabel: true,
+            labelsPosition: "bottom",
+            popup: "bottom",
+            theme: "attention",
+            handle: "round",
+            size: "large",
+            theme: "custom",
+            onmove: function (value) {
+                rangeInput.value = value;
+            }
+        });
+
+        RangeList.push(rangeObject);
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("feedback-form");
 
@@ -86,4 +116,6 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
         console.error("Form with id 'feedback-form' not found.");
     }
+
+    setupRangeInput();
 });
