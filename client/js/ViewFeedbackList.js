@@ -10,7 +10,6 @@ const render = (data) => {
 
     const userType = sessionStorage.getItem("user_type");
 
-    // need to adding grades to the database of feedback
     if (data.length > 0) {
         data.forEach((feedback) => {
             console.log(feedback);
@@ -20,13 +19,15 @@ const render = (data) => {
             checkDiv.classList.add("NoteFeedback");
             parentSection.appendChild(checkDiv);
             const feedbackP = document.createElement("p");
+            feedbackP.classList.add("feedback-text-title");
+            const feedbackTextless = document.createTextNode("Feedback for lesson " + feedback.lessonNumber + ": " + feedback.lessonTopic);
             feedbackP.classList.add("feedback-text");
-            const feedbackTextless = document.createTextNode("Feedback for lesson: " + feedback.lessonNumber + ":" + feedback.lessonTopic);
             const feedbackTextgrade = document.createTextNode("Suggested grades: " + feedback.grade + "%");
             feedbackP.appendChild(feedbackTextless);
             feedbackP.appendChild(document.createElement("br"));
             feedbackP.appendChild(feedbackTextgrade);
             parentSection.appendChild(feedbackP);
+
             const feedbackIcons = document.createElement("div");
             feedbackIcons.classList.add("feedback-icons");
             parentSection.appendChild(feedbackIcons);
@@ -42,7 +43,6 @@ const render = (data) => {
             }
 
             const linkTofeedback = document.createElement("a");
-            // after this page, the user need move to oneFeedback.html page
             linkTofeedback.href = `./oneFeedback.html?feedbackid=${feedback.feedbackID}`;
             linkTofeedback.classList.add("feedback-one-icon");
             linkTofeedback.classList.add("eye-icon-feedback");
@@ -59,7 +59,6 @@ let new_data = [];
 const searchInput = document.querySelector("#searchInput");
 searchInput.addEventListener("keyup", (ev) => searchFeedback(ev));
 
-// need to do the getFeedback function
 async function loadPage() {
     const data = await getFeedback();
     new_data = data;
@@ -92,4 +91,8 @@ window.onclick = function (event) {
     if (event.target === modal) {
         modal.style.display = "none";
     }
+}
+
+function toggleCheckbox(element) {
+    element.classList.toggle('checked');
 }

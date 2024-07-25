@@ -486,7 +486,7 @@ nav div {
     margin-right: 3%;
 }
 
-.simul-text {
+.simul-text, .feedback-text-title, .feedback-text{
     flex: 1;
     font-size: 16px;
     font-family: sans-serif;
@@ -516,11 +516,23 @@ nav div {
     border: none;
 }
 
+.feedback-one-icon {
+    min-width: 45px;
+    min-height: 29px;
+    background-color: #ebebeb;
+    border-radius: 13px;
+    box-sizing: border-box;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+}
+
 .vr-icon-simulation {
     background-image: url("../images/practiceSimulation.svg");
 }
 
-.eye-icon-simulation {
+.eye-icon-simulation, .eye-icon-feedback {
     background-image: url("../images/watchingInsimulation.svg");
 }
 
@@ -537,6 +549,15 @@ nav div {
     background-image: url("../images/checkIfDoingsimilation.svg");
 }
 
+.NoteFeedback {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 28px;
+    height: 28px;
+    margin-left: 2%;
+    background-image: url("../images/feedback-list.svg");
+}
+
 .simul-icons img {
     width: 28px;
     height: 28px;
@@ -551,6 +572,85 @@ nav div {
     font-family: sans-serif;
     font-size: 30px;
 } */
+
+.header-section {
+    background-color: #f0f0f0; /* צבע רקע אפור */
+    padding: 10px 20px; /* רווח פנימי סביב התוכן */
+    border-radius: 0%; /* עיגול פינות (אופציונלי) */
+    display: inline-block; /* כדי שהרוחב יתאם בדיוק לרוחב התוכן */
+}
+
+.title-div-containe {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* ממקם את הכותרת והאיקס בקצוות שונים */
+    margin-bottom: 1rem; /* רווח מתחת לקטע זה */
+}
+
+.filter-feedback-title {
+    margin-left: 3%;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 1%;
+}
+
+.feedback-text-choose {
+    font-size: 18px;
+}
+
+.choose-in-feedback {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* שני טורים */
+    gap: 10px; /* רווח בין התאים */
+    max-width: 400px; /* רוחב מקסימלי לפילטר */
+    margin-top: 5%;
+    margin-left: 2%;
+}
+
+.search-section {
+    display: flex;
+    justify-content: center; /* מרכז את כפתור ה-Search */
+    margin-top: 1rem; /* רווח מעל לאזור החיפוש */
+}
+
+.search-button {
+    padding: 10px 30px;
+    font-size: 16px;
+    font-family: sans-serif;
+    background-color: #d5d8dc; /* צבע רקע עבור כפתור החיפוש */
+    color: black;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.feedback-option {
+    display: flex;
+    align-items: center;
+    flex: 1 0 calc(50% - 10px); /* שני טורים עם רווח ביניהם */
+    margin-bottom: 10px;
+}
+
+.checkbox {
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid #000;
+    border-radius: 3px;
+    margin-right: 5%; /* מרווח בין הריבוע לטקסט */
+}
+
+.checkbox.checked::before {
+    content: '✔';
+    color: white;
+    font-size: 16px;
+}
 
 #form-section input[type="text"], #searchInput {
     display: flex;
@@ -740,7 +840,16 @@ nav div {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #ccc;
-    width: 80%;
+    width: 35%;
+    border-radius: 0%;
+}
+
+.header-section {
+    background-color: #f0f0f0; /* צבע רקע אפור */
+    padding: 10px 20px; /* רווח פנימי סביב התוכן */
+    border-radius: 0%; /* עיגול פינות */
+    width: 100%; /* מתאים לרוחב של ה-modal-content */
+    box-sizing: border-box; /* כולל את הרווח הפנימי ברוחב הכולל */
 }
 
 .close {
@@ -756,6 +865,7 @@ nav div {
     text-decoration: none;
     cursor: pointer;
 }
+
 
 @media (max-width: 1030px) {
     header {

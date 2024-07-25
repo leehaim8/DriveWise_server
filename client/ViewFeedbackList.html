@@ -182,10 +182,50 @@
 
     <div id="feedbackFilterModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeFeedbackFilterModal()">&times;</span>
-            <p>Some text in the modal...</p>
+            <div class="header-section">
+                <div class ="title-div-container">
+                    <span class="close" onclick="closeFeedbackFilterModal()">&times;</span>
+                    <p class="filter-feedback-title">The subject of the feedback</p>
+                </div>
+            </div>
+    <div class="choose-in-feedback">
+        <div class="feedback-option">
+            <div class="checkbox" onclick="toggleCheckbox(this)"></div>
+            <span class ="feedback-text-choose">Roads</span>
+        </div>
+        <div class="feedback-option">
+            <div class="checkbox" onclick="toggleCheckbox(this)"></div>
+            <span class ="feedback-text-choose">Ways</span>
+        </div>
+        <div class="feedback-option">
+            <div class="checkbox" onclick="toggleCheckbox(this)"></div>
+            <span class ="feedback-text-choose">Parking</span>
+        </div>
+        <div class="feedback-option">
+            <div class="checkbox" onclick="toggleCheckbox(this)"></div>
+            <span class ="feedback-text-choose">Correct driving</span>
+        </div>
+        <div class="feedback-option">
+            <div class="checkbox" onclick="toggleCheckbox(this)"></div>
+            <span class ="feedback-text-choose">Integration</span>
         </div>
     </div>
+
+    <div class="search-section">
+        <button class="search-button" onclick="performSearch()">Search</button>
+    </div>
+        </div>
+    </div>
+
+                <!-- <div class ="text-in-Filter-feedbacks"> </div>
+            <h2 class ="filter-feedback-title"> The subject of the feedback </h2>
+            <div class ="choose-in-feedback">
+                <span>Roads</span>
+                <span>Ways</span>
+                <span>Parking</span>
+                <span>Correct driving</span>
+            </div>
+            </div> -->
 </body>
 
 </html>
