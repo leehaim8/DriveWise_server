@@ -13,6 +13,7 @@ const render = (data) => {
     // need to adding grades to the database of feedback
     if (data.length > 0) {
         data.forEach((feedback) => {
+            console.log(feedback);
             const parentSection = document.createElement("section");
             parentSection.classList.add("feedback-item");
             const checkDiv = document.createElement("div");
@@ -20,9 +21,10 @@ const render = (data) => {
             parentSection.appendChild(checkDiv);
             const feedbackP = document.createElement("p");
             feedbackP.classList.add("feedback-text");
-            const feedbackTextless = document.createTextNode("Feedback for lesson: ", feedback.lessonNumber + ":" + feedback.lessonTopic);
-            const feedbackTextgrade = document.createTextNode("Suggested grades: ", feedback.grade + "%");
+            const feedbackTextless = document.createTextNode("Feedback for lesson: " + feedback.lessonNumber + ":" + feedback.lessonTopic);
+            const feedbackTextgrade = document.createTextNode("Suggested grades: " + feedback.grade + "%");
             feedbackP.appendChild(feedbackTextless);
+            feedbackP.appendChild(document.createElement("br"));
             feedbackP.appendChild(feedbackTextgrade);
             parentSection.appendChild(feedbackP);
             const feedbackIcons = document.createElement("div");
@@ -44,7 +46,7 @@ const render = (data) => {
             linkTofeedback.href = `./oneFeedback.html?feedbackid=${feedback.feedbackID}`;
             linkTofeedback.classList.add("feedback-one-icon");
             linkTofeedback.classList.add("eye-icon-feedback");
-            feedbackIcons.appendChild(linkTolinkTofeedback);
+            feedbackIcons.appendChild(linkTofeedback);
             renderElement.appendChild(parentSection);
         });
         root.appendChild(renderElement);
@@ -73,4 +75,21 @@ function searchFeedback(ev) {
     });
 
     render(findedList);
+}
+
+function openFeedbackFilterModal() {
+    const modal = document.getElementById("feedbackFilterModal");
+    modal.style.display = "block";
+}
+
+function closeFeedbackFilterModal() {
+    const modal = document.getElementById("feedbackFilterModal");
+    modal.style.display = "none";
+}
+
+window.onclick = function (event) {
+    const modal = document.getElementById("feedbackFilterModal");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
 }

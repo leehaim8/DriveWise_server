@@ -75,7 +75,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="feedback nav-link link-body-emphasis">
+                                <a href="ViewFeedbackList.html" class="feedback nav-link link-body-emphasis">
                                     <i class="bi bi-chat-dots me-2"></i>
                                     View feedback
                                 </a>
@@ -173,12 +173,19 @@
                 <div class="search-bar">
                     <div class="search-field search-icon"></div>
                     <input type="text" id="searchInput" placeholder="Search feedback">
-                    <div class="search-field filter-icon"></div>
+                    <div class="search-field filter-icon" onclick="openFeedbackFilterModal()"></div>
                 </div>
                 <div id="root"></div>
             </section>
         </section>
     </main>
+
+    <div id="feedbackFilterModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeFeedbackFilterModal()">&times;</span>
+            <p>Some text in the modal...</p>
+        </div>
+    </div>
 </body>
 
 </html>

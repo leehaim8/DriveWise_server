@@ -9,12 +9,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", async function() {
-    const userId = sessionStorage.getItem('user_id');
-    const userType = sessionStorage.getItem('user_type');
-
-    const response = await fetch(`http://127.0.0.1:8080/api/users/${userId}`);
-    const userData = await response.json();
-    displayUserSpecificData(userData, userType);
+    if (sessionStorage.getItem('user_id') && sessionStorage.getItem('user_type')) {
+        const userId = sessionStorage.getItem('user_id');
+        const userType = sessionStorage.getItem('user_type');
+    
+        const response = await fetch(`http://127.0.0.1:8080/api/users/${userId}`);
+        const userData = await response.json();
+        displayUserSpecificData(userData, userType);
+    }
+    else {
+        logout();
+    }
 });
 
 function displayUserSpecificData(userData, userType) {
@@ -27,10 +32,15 @@ function displayUserSpecificData(userData, userType) {
         addSimulationElements.forEach(el => el.hidden = false);
         studentsElements.forEach(el => el.hidden = false);
     } else if (userType === 'Student') {
+
         feedbackElements.forEach(el => el.hidden = false);
         addSimulationElements.forEach(el => el.hidden = true);
         studentsElements.forEach(el => el.hidden = true);
-        document.getElementById("rectangale-change").innerText = "Feedback";
+
+        const rectangleChangeElement = document.getElementById("rectangale-change");
+        if (rectangleChangeElement) {
+            rectangleChangeElement.innerText = "Feedback";
+        }
     }
 }
 
@@ -38,8 +48,12 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".logoutButton").forEach(button => {
         button.addEventListener("click", function(event) {
             event.preventDefault();
-            sessionStorage.clear();
-            window.location.href = "login.html";
+            logout();
         });
     });
 });
+
+function logout() {
+    sessionStorage.clear();
+    window.location.href = "login.html";
+}
