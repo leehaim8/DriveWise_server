@@ -28,7 +28,7 @@
         </div>
         <a id="logo" href="index.html"></a>
         <div id="profile">
-            <img src="./images/Drivinginstructor.jpg" alt="Driving instructor" id="profile-picture">
+            <!-- <img src="./images/Drivinginstructor.jpg" alt="Driving instructor" id="profile-picture"> -->
             <h3>Good morning</h3>
         </div>
     </header>
@@ -63,7 +63,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="./addsimulation.html" id="selected" class="addSimulation nav-link link-body-emphasis">
+                                <a href="./addsimulation.html" id="selected"
+                                    class="addSimulation nav-link link-body-emphasis">
                                     <i class="bi bi-plus-circle me-2"></i>
                                     Adding a simulation
                                 </a>
@@ -176,32 +177,46 @@
                 <h2>Adding a simulation</h2>
                 <p>Enter all the details about the simulation you want to create:</p>
                 <form id="form-section">
+                    <div>
+                        <label for="first-name" class="form-label">The student first name:</label>
+                        <textarea class="form-control form-width" id="first-name" name="first-name" rows="1"></textarea>
+                    </div>
+                    <div>
+                        <label for="last-name" class="form-label">The student last name:</label>
+                        <textarea class="form-control form-width" id="last-name" name="last-name" rows="1"></textarea>
+                    </div>
                     <section>
                         <label class="form-label">Simulation type:</label>
-                        <select class="form-select form-width" name="simulation-Type" aria-label="Default select example">
+                        <select class="form-select form-width" name="simulation-Type"
+                            aria-label="Default select example">
                             <option value="1">Basic simulation</option>
                             <option value="2">Simulation for test</option>
                         </select>
                     </section>
                     <div>
                         <label for="subject" class="form-label">The subject of the simulation:</label>
-                        <textarea class="form-control form-width" id="subject" name="simulation-Name" rows="1"></textarea>
+                        <textarea class="form-control form-width" id="subject" name="simulation-Name"
+                            rows="1"></textarea>
                     </div>
                     <div>
                         <label for="perform" class="form-label">Perform (DD-MM-YYYY):</label>
-                        <textarea class="form-control form-width" id="perform" name="simulation-Perform" rows="1"></textarea>
+                        <textarea class="form-control form-width" id="perform" name="simulation-Perform"
+                            rows="1"></textarea>
                     </div>
                     <div>
                         <label for="score" class="form-label">score:</label>
-                        <textarea class="form-control form-width" id="score" name="simulation-Score" rows="1"></textarea>
+                        <textarea class="form-control form-width" id="score" name="simulation-Score"
+                            rows="1"></textarea>
                     </div>
                     <div>
                         <label for="attempts" class="form-label">Several attempts:</label>
-                        <textarea class="form-control form-width" id="attempts" name="simulation-Attempts" rows="1"></textarea>
+                        <textarea class="form-control form-width" id="attempts" name="simulation-Attempts"
+                            rows="1"></textarea>
                     </div>
                     <div>
                         <label for="Detail" class="form-label">Detail:</label>
-                        <textarea class="form-control form-width" id="Detail" name="simulation-Details" rows="3"></textarea>
+                        <textarea class="form-control form-width" id="Detail" name="simulation-Details"
+                            rows="3"></textarea>
                     </div>
                     <div>
                         <label for="link" class="form-label">simulation link:</label>
@@ -209,7 +224,8 @@
                     </div>
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1" name="checkbox-btn">
-                        <label class="form-check-label" for="exampleCheck1">I confirm the details of the simulation</label>
+                        <label class="form-check-label" for="exampleCheck1">I confirm the details of the
+                            simulation</label>
                     </div>
                     <section id="btn">
                         <button id="submit" type="submit" class="btn btn-primary">
