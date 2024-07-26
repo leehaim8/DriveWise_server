@@ -589,24 +589,26 @@ nav div {
 } */
 
 .header-section {
-    background-color: #f0f0f0; /* צבע רקע אפור */
-    padding: 10px 20px; /* רווח פנימי סביב התוכן */
-    border-radius: 0%; /* עיגול פינות (אופציונלי) */
-    display: inline-block; /* כדי שהרוחב יתאם בדיוק לרוחב התוכן */
+    background-color: #c6c6c7; ; 
+    padding: 7px 20px;
+    border-radius: 0%; 
+    display: inline-block; 
 }
 
 .title-div-containe {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* ממקם את הכותרת והאיקס בקצוות שונים */
-    margin-bottom: 1rem; /* רווח מתחת לקטע זה */
+    justify-content: space-between;
+    /* margin-bottom: 1rem;  */
 }
 
 .filter-feedback-title {
-    margin-left: 3%;
+    /* margin-left: 7%; */
     font-size: 25px;
     font-weight: bold;
-    margin-top: 1%;
+    margin: 0 auto;
+    padding: 1.7%;
+    margin-left: 10%;
 }
 
 .feedback-text-choose {
@@ -615,35 +617,37 @@ nav div {
 
 .choose-in-feedback {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* שני טורים */
-    gap: 10px; /* רווח בין התאים */
-    max-width: 400px; /* רוחב מקסימלי לפילטר */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 10px; 
+    max-width: 400px; 
     margin-top: 5%;
     margin-left: 2%;
+    padding: 1.7%;
 }
 
 .search-section {
     display: flex;
-    justify-content: center; /* מרכז את כפתור ה-Search */
-    margin-top: 1rem; /* רווח מעל לאזור החיפוש */
+    justify-content: center; 
+    margin-top: 1rem;
 }
 
 .search-button {
     padding: 10px 30px;
     font-size: 16px;
     font-family: sans-serif;
-    background-color: #d5d8dc; /* צבע רקע עבור כפתור החיפוש */
+    background-color: #c6c6c7; 
     color: black;
     border: none;
     border-radius: 25px;
     cursor: pointer;
     font-weight: bold;
+    margin-bottom: 3%;
 }
 
 .feedback-option {
     display: flex;
     align-items: center;
-    flex: 1 0 calc(50% - 10px); /* שני טורים עם רווח ביניהם */
+    flex: 1 0 calc(50% - 10px); 
     margin-bottom: 10px;
 }
 
@@ -658,7 +662,7 @@ nav div {
     cursor: pointer;
     border: 1px solid #000;
     border-radius: 3px;
-    margin-right: 5%; /* מרווח בין הריבוע לטקסט */
+    margin-right: 5%; 
 }
 
 .checkbox.checked::before {
@@ -851,32 +855,23 @@ nav div {
 }
 
 .modal-content {
-    background-color: #fefefe; 
+    background-color: #d3d5d7; 
     margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #ccc;
+    border: none;
     width: 35%;
     border-radius: 0%;
 }
 
-.header-section {
-    background-color: #f0f0f0; /* צבע רקע אפור */
-    padding: 10px 20px; /* רווח פנימי סביב התוכן */
-    border-radius: 0%; /* עיגול פינות */
-    width: 100%; /* מתאים לרוחב של ה-modal-content */
-    box-sizing: border-box; /* כולל את הרווח הפנימי ברוחב הכולל */
-}
-
 .close {
-    color: #aaa;
+    color: black;
     float: right;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: #7c7b7b;
     text-decoration: none;
     cursor: pointer;
 }
