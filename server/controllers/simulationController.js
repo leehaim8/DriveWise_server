@@ -44,10 +44,29 @@ const simulationController = {
     async createSimulation(req, res) {
         let connection;
         try {
+            if (!req.body.simulationName || !req.body.simulationAttempts || !req.body.simulationPerform || !req.body.simulationScore || !req.body.simulationDetails || !req.body.simulationFile || !req.body.user_first_name || !req.body.user_last_name) {
+                res.status(400).json({ message: "Missing required fields" });
+                return;
+            }
             connection = await dbConnection.createConnection();
-            const [result] = await connection.execute(`INSERT INTO ${TABLE_NAME}_simulations (user_id ,simulationName,attempts,perform,score,notes,video) VALUES (?,?,?,?,?,?,?)`, [1, req.body.simulationName, req.body.simulationAttempts, req.body.simulationPerform, req.body.simulationScore, req.body.simulationDetails, req.body.simulationFile]);
-            const [simulation] = await connection.execute(`SELECT id, user_id, simulationName, attempts, DATE_FORMAT(perform, '%Y-%m-%d') AS perform, score, notes, video FROM ${TABLE_NAME}_simulations WHERE id = ?`, [result.insertId]);
-            res.json(simulation[0]);
+            const [users] = await connection.execute(`SELECT user_id FROM ${TABLE_NAME}_users WHERE user_first_name = ? AND user_last_name = ?`, [req.body.user_first_name, req.body.user_last_name]);
+            if (users.length === 0) {
+                res.status(404).json({ message: "User not found" });
+                return;
+            }
+            const userId = users[0].user_id;
+            console.log("userId:", userId);
+            const [simulations] = await connection.execute(`SELECT sims.id FROM ${TABLE_NAME}_simulations AS sims INNER JOIN ${TABLE_NAME}_users AS users ON sims.user_id = users.user_id WHERE sims.simulationName = ? AND users.user_id = ?`, [req.body.simulationName, userId]);
+            if (simulations.length > 0) {
+                res.status(409).json({ message: "Simulation with this name already exists for the user" });
+                return;
+            }
+            console.log("req.body:", req.body);
+            const [result] = await connection.execute(`INSERT INTO ${TABLE_NAME}_simulations (user_id, simulationName, attempts, perform, score, notes, video) VALUES (?, ?, ?, ?, ?, ?, ?) `, [userId, req.body.simulationName, req.body.simulationAttempts, req.body.simulationPerform, req.body.simulationScore, req.body.simulationDetails, req.body.simulationFile]);
+            // const [simulation] = await connection.execute(` SELECT sims.id, sims.user_id, sims.simulationName, sims.attempts, DATE_FORMAT(sims.perform, '%Y-%m-%d') AS perform, sims.score, sims.notes, sims.video FROM ${TABLE_NAME}_simulations AS sims `, [result.insertId]);
+            // res.json(simulation[0]);
+            // console.log("simulation:", simulation);
+            res.json({ message: "Simulation created" });
         } catch (error) {
             console.error("Error in createSimulation:", error);
             res.status(500).json({ message: "Internal server error" });
@@ -60,6 +79,10 @@ const simulationController = {
     async updateSimulation(req, res) {
         let connection;
         try {
+            if (!req.body.simulationName || !req.body.simulationAttempts || !req.body.simulationPerform || !req.body.simulationScore || !req.body.simulationDetails || !req.body.simulationFile) {
+                res.status(400).json({ message: "Missing required fields" });
+                return;
+            }
             const { id } = req.params;
             const { user_id } = req.query;
             connection = await dbConnection.createConnection();

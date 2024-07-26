@@ -3,6 +3,8 @@ function validateForm(event) {
 
     let form = document.getElementById("form-section");
     let data = {
+        user_first_name: form.elements["first-name"].value,
+        user_last_name: form.elements["last-name"].value,
         simulationType: form.elements["simulation-Type"].value,
         simulationName: form.elements["simulation-Name"].value,
         simulationPerform: form.elements["simulation-Perform"].value,
@@ -11,6 +13,7 @@ function validateForm(event) {
         simulationDetails: form.elements["simulation-Details"].value,
         simulationFile: form.elements["simulation-Link"].value
     };
+    console.log('Form data:', data);
     let checkbox = form.elements["checkbox-btn"];
 
     let errorMessage = validateData(data, checkbox);
@@ -18,8 +21,10 @@ function validateForm(event) {
     if (errorMessage !== '') {
         console.log(errorMessage);
     } else {
-        if (data.simulationType === 'Basic simulation') {
+        if (data.simulationType === '1') {
+            console.log(data);
             sendDataToServer(data);
+            console.log(data);
         }
         form.reset();
     }
@@ -78,6 +83,7 @@ function validateData(data, checkbox) {
 
 window.onload = function () {
     document.getElementById("form-section").addEventListener("submit", function (event) {
+        console.log('Form submit event');
         validateForm(event);
     });
 }
