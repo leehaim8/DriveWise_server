@@ -75,24 +75,3 @@ function searchFeedback(ev) {
 
     render(findedList);
 }
-
-function openFeedbackFilterModal() {
-    const modal = document.getElementById("feedbackFilterModal");
-    modal.style.display = "block";
-}
-
-function closeFeedbackFilterModal() {
-    const modal = document.getElementById("feedbackFilterModal");
-    modal.style.display = "none";
-}
-
-window.onclick = function (event) {
-    const modal = document.getElementById("feedbackFilterModal");
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-}
-
-function toggleCheckbox(element) {
-    element.classList.toggle('checked');
-}

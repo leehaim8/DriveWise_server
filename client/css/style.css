@@ -511,7 +511,7 @@ nav div {
     margin-top: 1rem;
 }
 
-.simul-icons {
+.simul-icons, .feedback-icons {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1003,28 +1003,5 @@ nav div {
         height: 28px;
         margin-left: 3%;
         background-image: url("../images/feedback-list.svg");
-    }
-
-    .modal-content {
-        background-color: #d3d5d7; 
-        margin: 15% auto;
-        border: none;
-        width:90%;
-        border-radius: 0%;
-        margin-top: 50%;
-    }
-
-    .filter-feedback-title {
-        font-size: 23px;
-        font-weight: bold;
-        margin: 0 auto;
-        margin-top: 4%;
-    }
-
-    .header-section {
-        background-color: #c6c6c7; ; 
-        padding: 2px 20px;
-        border-radius: 0%; 
-        display: inline-block; 
     }
 }
