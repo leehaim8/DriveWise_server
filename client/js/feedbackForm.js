@@ -1,7 +1,8 @@
 const url = new URL(window.location.href);
 const userId = url.searchParams.get('studentId');
 let RangeList = [];
-function validateFeedback(event) {
+
+async function validateFeedback(event) {
     event.preventDefault();
 
     let form = document.getElementById("feedback-form");
@@ -22,7 +23,8 @@ function validateFeedback(event) {
         oneWayStreet: form.elements["oneWayStreet"].value,
         twoWayStreet: form.elements["twoWayStreet"].value,
         properTurning: form.elements["properTurning"].value,
-        comments: form.elements["comments"].value
+        comments: form.elements["comments"].value,
+        city: form.elements["city"].value
     };
 
     let checkbox = form.elements["checkbox-btn"];
@@ -32,6 +34,11 @@ function validateFeedback(event) {
     if (errorMessage !== '') {
         alert(errorMessage);
     } else {
+        const weatherDescription = await getWeather(data.city);
+        if (weatherDescription) {
+            data.weather = weatherDescription.weather;
+            data.temperature = weatherDescription.temp;
+        }
         sendFeedbackToServer(data);
         form.reset();
     }
@@ -57,6 +64,25 @@ function validateDataFeedback(data, checkbox) {
     }
 
     return errorMessage;
+}
+
+async function getWeather(city) {
+    const apiKey = '956c7860b2a6225577cdd6fdc3bd995d';
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        temp = Math.round(data.main.temp);
+        weather = data.weather[0].main;
+        return { temp, weather };
+    } catch (error) {
+        console.error('Error fetching weather data:', error);
+        return null;
+    }
 }
 
 async function sendFeedbackToServer(data) {
