@@ -55,17 +55,12 @@ const simulationController = {
                 return;
             }
             const userId = users[0].user_id;
-            console.log("userId:", userId);
             const [simulations] = await connection.execute(`SELECT sims.id FROM ${TABLE_NAME}_simulations AS sims INNER JOIN ${TABLE_NAME}_users AS users ON sims.user_id = users.user_id WHERE sims.simulationName = ? AND users.user_id = ?`, [req.body.simulationName, userId]);
             if (simulations.length > 0) {
                 res.status(409).json({ message: "Simulation with this name already exists for the user" });
                 return;
             }
-            console.log("req.body:", req.body);
             const [result] = await connection.execute(`INSERT INTO ${TABLE_NAME}_simulations (user_id, simulationName, attempts, perform, score, notes, video) VALUES (?, ?, ?, ?, ?, ?, ?) `, [userId, req.body.simulationName, req.body.simulationAttempts, req.body.simulationPerform, req.body.simulationScore, req.body.simulationDetails, req.body.simulationFile]);
-            // const [simulation] = await connection.execute(` SELECT sims.id, sims.user_id, sims.simulationName, sims.attempts, DATE_FORMAT(sims.perform, '%Y-%m-%d') AS perform, sims.score, sims.notes, sims.video FROM ${TABLE_NAME}_simulations AS sims `, [result.insertId]);
-            // res.json(simulation[0]);
-            // console.log("simulation:", simulation);
             res.json({ message: "Simulation created" });
         } catch (error) {
             console.error("Error in createSimulation:", error);
@@ -102,6 +97,11 @@ const simulationController = {
         let connection;
         try {
             const { id } = req.params;
+            const [simulationId] = await connection.execute(`SELECT id FROM ${TABLE_NAME}_simulations WHERE id = ?`, [id]);
+            if (simulationId.length === 0) {
+                res.status(404).json({ message: "Simulation not found" });
+                return;
+            }
             connection = await dbConnection.createConnection();
             const [rows] = await connection.execute(`SELECT simulationName FROM ${TABLE_NAME}_simulations WHERE id = ?`, [id]);
             if (rows.length === 0) {

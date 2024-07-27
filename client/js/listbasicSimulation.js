@@ -49,7 +49,6 @@ const render = (data) => {
         });
         root.appendChild(renderElement);
 
-        console.log(simul.id);
     }
 };
 
