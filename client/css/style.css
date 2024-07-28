@@ -904,12 +904,11 @@ nav div {
     background-color: #c0c0c0; 
 }
 
-/* .link-item {
+.link-item {
     cursor: pointer;
 }
 
 .questionnaire-wrapper {
-
 display: flex;
 flex-flow: column;
 }
@@ -949,7 +948,7 @@ cursor: pointer;
 
 .question-item-option-label {
 cursor: pointer;
-} */
+}
 
 @media (max-width: 1030px) {
     header {
@@ -1069,6 +1068,15 @@ cursor: pointer;
         margin-left: 3%;
         background-image: url("../images/feedback-list.svg");
     }
+
+    .feedback-details {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px; 
+        width: 97%; 
+        padding-left: 3%; 
+        margin-top: 3%;
+    }
     /* #conteiner {
         width: 100%;
         margin-top: 20px;
@@ -1115,5 +1123,28 @@ cursor: pointer;
         height: 28px;
         margin-left: 3%;
         background-image: url("../images/feedback-list.svg");
+    }
+
+    .feedback-details-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        background-color: #ffffff;
+        border-radius: 13px;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+
+    .feedback-details-teacher-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        background-color: #ffffff;
+        border-radius: 13px;
+        padding: 5px;
+        box-sizing: border-box;
+        grid-column: span 2; 
     }
 }
