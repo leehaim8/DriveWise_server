@@ -680,16 +680,15 @@ nav div {
     margin-top: 1%;
     border: none;
     border-radius: 13px;
-    padding: 0 2%;
+    /* padding: 0 2%; */
     font-size: 16px;
     font-family: sans-serif;
     box-sizing: border-box;
-    margin-left: 3%;
-    margin-right: 3%;
     background: none;
     border: none;
     box-shadow: none;
     appearance: none;
+    padding-left: 60px;
 }
 
 .back-simulations a {
@@ -761,6 +760,7 @@ nav div {
 .rotateArrow {
     transform: rotate(0deg);
 }
+
 .notes {
     justify-content: space-between;
     align-items: center;
@@ -1039,16 +1039,15 @@ cursor: pointer;
         margin-top: 1%;
         border: none;
         border-radius: 13px;
-        padding: 0 2%;
         font-size: 16px;
         font-family: sans-serif;
         box-sizing: border-box;
-        margin-left: 6%;
-        margin-right: 3%;
         background: none;
         border: none;
         box-shadow: none;
         appearance: none;
+        padding-left: 50px;
+        padding-top: 10px;
     }
 
     .feedback-text-title, .feedback-text{

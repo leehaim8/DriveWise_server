@@ -13,7 +13,6 @@ function validateForm(event) {
         simulationDetails: form.elements["simulation-Details"].value,
         simulationFile: form.elements["simulation-Link"].value
     };
-    console.log('Form data:', data);
     let checkbox = form.elements["checkbox-btn"];
 
     let errorMessage = validateData(data, checkbox);
@@ -22,9 +21,7 @@ function validateForm(event) {
         console.log(errorMessage);
     } else {
         if (data.simulationType === '1') {
-            console.log(data);
             sendDataToServer(data);
-            console.log(data);
         }
         form.reset();
     }
@@ -83,7 +80,6 @@ function validateData(data, checkbox) {
 
 window.onload = function () {
     document.getElementById("form-section").addEventListener("submit", function (event) {
-        console.log('Form submit event');
         validateForm(event);
     });
 }
