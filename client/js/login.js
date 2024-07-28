@@ -2,9 +2,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
     event.preventDefault();
 
     const username = document.getElementById("username").value;
-    console.log(username);
     const password = document.getElementById("password").value;
-    console.log(password);
 
     const response = await fetch("http://127.0.0.1:8080/api/users/login", {
         method: "POST",

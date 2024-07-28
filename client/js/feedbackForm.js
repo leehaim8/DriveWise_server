@@ -32,7 +32,7 @@ async function validateFeedback(event) {
     let errorMessage = validateDataFeedback(data, checkbox);
 
     if (errorMessage !== '') {
-        alert(errorMessage);
+        console.log(errorMessage);
     } else {
         const weatherDescription = await getWeather(data.city);
         if (weatherDescription) {
@@ -46,6 +46,18 @@ async function validateFeedback(event) {
 
 function validateDataFeedback(data, checkbox) {
     let errorMessage = '';
+
+    if (!data.grade || data.grade <= 0 || data.grade > 100) {
+        errorMessage += 'Grade is required and must be a number between 0 and 100.\n';
+    }
+
+    if (!data.city || data.city.trim() === '') {
+        errorMessage += 'City is required.\n';
+    }
+
+    if (!data.lessonNumber || data.lessonNumber <= 0) {
+        errorMessage += 'Lesson Number is required and must be greater than 0.\n';
+    }
 
     if (!data.lessonNumber || data.lessonNumber <= 0) {
         errorMessage += 'Lesson Number is required and must be greater than 0.\n';
