@@ -18,7 +18,6 @@ function closePopup() {
 
 function addItem() {
     const itemInput = document.getElementById("itemInput").value;
-    // console.log("Added item:", itemInput); צריך את זה?
     closePopup();
 }
 
