@@ -43,7 +43,7 @@ const render = (data) => {
             }
 
             const linkTofeedback = document.createElement("a");
-            linkTofeedback.href = `./oneFeedback.html?feedbackid=${feedback.feedbackID}`;
+            linkTofeedback.href = `./oneFeefback.html?feedbackid=${feedback.feedbackID}`;
             linkTofeedback.classList.add("feedback-one-icon");
             linkTofeedback.classList.add("eye-icon-feedback");
             feedbackIcons.appendChild(linkTofeedback);
