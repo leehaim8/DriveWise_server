@@ -11,7 +11,8 @@ const feedbackController = {
             const [rows] = await connection.execute(`SELECT *
                 FROM ${TABLE_NAME}_feedback f
                 INNER JOIN ${TABLE_NAME}_users u ON f.userID = u.user_id
-                WHERE f.userID = ?`, [user_id]);
+                WHERE f.userID = ? 
+                ORDER BY grade ASC`, [user_id]);
             res.json(rows);
         } catch (error) {
             console.error("Error in getFeedbacks:", error);
@@ -28,8 +29,9 @@ const feedbackController = {
             const { id } = req.params;
             const { user_id } = req.query;
             connection = await dbConnection.createConnection();
-            const [rows] = await connection.execute(`SELECT * FROM ${TABLE_NAME}_feedback WHERE id = ? and userID = ?`, [id, user_id]);
-
+            // const [rows] = await connection.execute(`SELECT * FROM ${TABLE_NAME}_feedback WHERE id = ? and userID = ?`, [id, user_id]);
+            const [rows] = await connection.execute(`SELECT * FROM ${TABLE_NAME}_feedback WHERE feedbackID = ? and userID = ?`, [id, user_id]);
+            
             if (rows.length > 0) {
                 const feedback = rows[0];
                 res.json(feedback);

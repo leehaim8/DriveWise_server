@@ -13,7 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script src="./js/script.js" defer></script>
     <script src="./js/getData.js" defer></script>
-    <script src="./js/oneFeedback.js" defer></script>
+    <script src="./js/oneQuestionnaire.js" defer></script>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
@@ -167,12 +167,11 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="./index.html">Home page</a></li>
                         <li class="breadcrumb-item"><a href="./ViewFeedbackList.html">View feedback</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Feedback details</li>
+                        <li class="breadcrumb-item"><span class="link-item" onclick="window.history.back()">Feedback details</span></li>
+                        <li class="breadcrumb-item active" aria-current="page">Questionnaire</li>
                     </ol>
                 </nav>
                 <div id="root"></div>
-
-                <button class ="link-button-q" onclick="window.location.href='/client/oneQuestionnaire.html?feedbackid='+parseInt(new URLSearchParams(location.search).get(`feedbackid`))">Go to Questionnaire</button>
             </section>
             </main>
         </body>

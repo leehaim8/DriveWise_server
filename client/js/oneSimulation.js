@@ -41,6 +41,7 @@ function render(data) {
 
 document.addEventListener("DOMContentLoaded", function () {
     user_type = sessionStorage.getItem("user_type");
+    
     if (user_type === "Teacher") {
         document.getElementById("edit-btn").hidden = false;
     } else {

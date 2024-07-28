@@ -837,6 +837,119 @@ nav div {
     cursor: pointer;
 }
 
+.feedback-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; 
+    width: 97%; 
+    padding-left: 3%; 
+}
+
+.feedback-details-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #ffffff;
+    border-radius: 13px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.feedback-details-teacher-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #ffffff;
+    border-radius: 13px;
+    padding: 20px;
+    box-sizing: border-box;
+    grid-column: span 2; 
+}
+
+.details-row {
+    margin-top: 0;
+    display: flex;
+    gap: 5px;
+}
+
+.details-row span {
+    font-weight: bold;
+}
+
+.details-row p {
+    margin: 0;
+    line-height: 1.6;
+    flex-shrink: 0; 
+}
+
+.link-button-q {
+    cursor: pointer;
+    margin-top: 3%;
+    width: 94%;
+    margin-left: 3%;
+    background-color: #d3d3d3; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 10px; 
+    text-align: center;
+    display: inline-block; 
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+}
+
+.link-button-q:hover {
+    background-color: #c0c0c0; 
+}
+
+/* .link-item {
+    cursor: pointer;
+}
+
+.questionnaire-wrapper {
+
+display: flex;
+flex-flow: column;
+}
+
+.questionnaire-submit-btn {
+    margin: 3% auto;
+    display: block;
+}
+
+.question-item {
+margin-top: 2.5%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+background-color: #ffffff;
+border-radius: 13px;
+padding: 20px;
+margin-left: 3%;
+box-sizing: border-box;
+margin-right: 3%;
+}
+
+.question-item-title {
+font-weight: bold;
+}
+
+.question-item-options {
+display: grid;
+grid-template-columns: 15px auto;
+gap: 7px;
+}
+
+.question-item-option-input {
+cursor: pointer;
+}
+
+.question-item-option-label {
+cursor: pointer;
+} */
 
 @media (max-width: 1030px) {
     header {
