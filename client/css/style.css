@@ -854,7 +854,7 @@ nav div {
     border-radius: 13px;
     padding: 20px;
     box-sizing: border-box;
-}
+} 
 
 .feedback-details-teacher-item {
     display: flex;
@@ -863,7 +863,7 @@ nav div {
     align-items: flex-start;
     background-color: #ffffff;
     border-radius: 13px;
-    padding: 20px;
+    padding: 10px;
     box-sizing: border-box;
     grid-column: span 2; 
 }
