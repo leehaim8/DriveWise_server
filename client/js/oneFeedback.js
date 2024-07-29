@@ -30,6 +30,14 @@ function render(data) {
             { span: "Correct driving:", p: "" },
             { span: "Proper turning:", p: data.properTurning + "%" },
         ],
+        overTraking: [
+            { span: "Over traking:", p: "" },
+            { span: "Over traking:", p: data.overtraking + "%" },
+        ],
+        Weather: [
+            { span: "Weather at the time of the lesson:", p: "" },
+            { span: "Weather:", p: data.weather},
+        ],
         teacherRemarks: [
             { span: "Teacher details:", p: "" },
             { span: "", p: data.comments},
@@ -69,6 +77,20 @@ function render(data) {
             correctDrivingItems.appendChild(row);
         });
 
+        const overTrakingItems = document.createElement("div");
+        overTrakingItems.classList.add("feedback-details-item");
+        detail.overTraking.forEach(item => {
+            const row = generateDetailItem(item);
+            overTrakingItems.appendChild(row);
+        });
+
+        const WeatherItems = document.createElement("div");
+        WeatherItems.classList.add("feedback-details-item");
+        detail.Weather.forEach(item => {
+            const row = generateDetailItem(item);
+            WeatherItems.appendChild(row);
+        });
+
         const teacherRemarksItems = document.createElement("div");
         teacherRemarksItems.classList.add("feedback-details-teacher-item");
         detail.teacherRemarks.forEach(item => {
@@ -80,6 +102,8 @@ function render(data) {
         detailsElement.appendChild(integrationItems);
         detailsElement.appendChild(roadsItems);
         detailsElement.appendChild(correctDrivingItems);
+        detailsElement.appendChild(overTrakingItems);
+        detailsElement.appendChild(WeatherItems);
         detailsElement.appendChild(teacherRemarksItems);
 
         if (data.grade < 75) {
@@ -101,6 +125,13 @@ function generateDetailItem(item) {
 
     const row = document.createElement("div");
     row.classList.add("details-row");
+
+    if (paragraph.innerText.trim() === "") {
+        row.classList.add("empty-p");
+    } else {
+        row.classList.add("filled-p");
+    }
+    
     row.appendChild(span);
     row.appendChild(paragraph);
     return row;

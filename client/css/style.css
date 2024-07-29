@@ -884,6 +884,15 @@ nav div {
     flex-shrink: 0; 
 }
 
+.details-row span {
+    font-weight: normal;
+}
+
+.details-row.empty-p span {
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .link-button-q {
     cursor: pointer;
     margin-top: 3%;
@@ -895,7 +904,7 @@ nav div {
     border-radius: 10px; 
     text-align: center;
     display: inline-block; 
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     color: black;
 }
@@ -1083,6 +1092,18 @@ cursor: pointer;
         padding-left: 3%; 
         margin-top: 3%;
     }
+
+    .questionnaire-submit-btn {
+        width: 100px;
+        height: 40px;
+        background-color: #d3d3d3;
+        color: #000000;
+        border: none;
+        font-weight: bold;
+        margin-top: 30px;
+        margin-left: 350px ;
+    }
+
     /* #conteiner {
         width: 100%;
         margin-top: 20px;
@@ -1152,5 +1173,26 @@ cursor: pointer;
         padding: 5px;
         box-sizing: border-box;
         grid-column: span 2; 
+    }
+
+    .details-row.empty-p span {
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .details-row.filled-p span, .details-row.filled-p p {
+        font-size: 0.9em; 
+        line-height: 1.6; 
+    }
+
+    .questionnaire-submit-btn {
+        width: 100px;
+        height: 40px;
+        background-color: #d3d3d3;
+        color: #000000;
+        border: none;
+        font-weight: bold;
+        margin-top: 30px;
+        margin-left: 150px ;
     }
 }
