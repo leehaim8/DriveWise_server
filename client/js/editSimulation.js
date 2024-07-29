@@ -53,7 +53,7 @@ async function submitForm(event) {
             "simulationFile": simulation.video
     });
 
-    window.location.href = './listbasicSimulation.html';
+    window.location.href = './listBasicSimulation.html';
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {

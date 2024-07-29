@@ -39,11 +39,11 @@ async function updateFunc(id, data) {
     return await response.json();
 }
 
-const handleDeleteSimulation = async (simulationid) => {
+const handleDeleteSimulation = async (simulationId) => {
     const html = document.querySelector(".render");
     html.remove();
     new_data = new_data.filter((dt) => {
-        return dt.id !== simulationid;
+        return dt.id !== simulationId;
     });
     fetch(`http://127.0.0.1:8080/api/simulations/${simulationid}?user_id=${userId}`, {
         method: "DELETE",

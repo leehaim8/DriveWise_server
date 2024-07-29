@@ -38,6 +38,10 @@ function render(data) {
             { span: "Weather at the time of the lesson:", p: "" },
             { span: "Weather:", p: data.weather},
         ],
+        Temperature: [
+            { span: "Temperature at the time of the lesson:", p: "" },
+            { span: "Temperature:", p: data.temperature},
+        ],
         teacherRemarks: [
             { span: "Teacher details:", p: "" },
             { span: "", p: data.comments},
@@ -91,6 +95,13 @@ function render(data) {
             WeatherItems.appendChild(row);
         });
 
+        const TemperatureItems = document.createElement("div");
+        TemperatureItems.classList.add("feedback-details-teacher-item");
+        detail.Temperature.forEach(item => {
+            const row = generateDetailItem(item);
+            TemperatureItems.appendChild(row);
+        });
+
         const teacherRemarksItems = document.createElement("div");
         teacherRemarksItems.classList.add("feedback-details-teacher-item");
         detail.teacherRemarks.forEach(item => {
@@ -104,6 +115,7 @@ function render(data) {
         detailsElement.appendChild(correctDrivingItems);
         detailsElement.appendChild(overTrakingItems);
         detailsElement.appendChild(WeatherItems);
+        detailsElement.appendChild(TemperatureItems);
         detailsElement.appendChild(teacherRemarksItems);
 
         if (data.grade < 75) {
@@ -131,7 +143,7 @@ function generateDetailItem(item) {
     } else {
         row.classList.add("filled-p");
     }
-    
+
     row.appendChild(span);
     row.appendChild(paragraph);
     return row;
