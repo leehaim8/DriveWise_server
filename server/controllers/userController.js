@@ -9,7 +9,7 @@ const userController = {
             const { id } = req.params;
 
             connection = await dbConnection.createConnection();
-            const [rows] = await connection.execute(`SELECT user_id FROM ${TABLE_NAME}_users WHERE user_id = ?`, [id]);
+            const [rows] = await connection.execute(`SELECT user_id, profile_image FROM ${TABLE_NAME}_users WHERE user_id = ?`, [id]);
 
             if (rows.length > 0) {
                 const user = rows[0];
