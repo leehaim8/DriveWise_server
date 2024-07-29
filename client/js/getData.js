@@ -12,7 +12,6 @@ async function getFunc(id) {
     return await response.json();
 }
 
-//check what doing in this function
 async function getFeedback(id) {
     const userId = sessionStorage.getItem("user_id");
     const url = id

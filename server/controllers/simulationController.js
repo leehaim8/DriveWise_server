@@ -8,10 +8,7 @@ const simulationController = {
         try {
             const { user_id } = req.query;
             connection = await dbConnection.createConnection();
-            const [rows] = await connection.execute(`SELECT s.id, s.user_id, s.simulationName, s.attempts, DATE_FORMAT(s.perform, '%Y-%m-%d') AS perform, s.score, s.notes, s.video
-                FROM ${TABLE_NAME}_simulations s
-                INNER JOIN ${TABLE_NAME}_users u ON s.user_id = u.user_id
-                WHERE s.user_id = ?`, [user_id]);
+            const [rows] = await connection.execute(`SELECT s.id, s.user_id, s.simulationName, s.attempts, DATE_FORMAT(s.perform, '%Y-%m-%d') AS perform, s.score, s.notes, s.video FROM ${TABLE_NAME}_simulations s INNER JOIN ${TABLE_NAME}_users u ON s.user_id = u.user_id WHERE s.user_id = ?`, [user_id]);
             res.json(rows);
         } catch (error) {
             console.error("Error in getSimulations:", error);
