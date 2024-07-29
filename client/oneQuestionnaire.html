@@ -99,7 +99,7 @@
                         </ul>
                     </div>
                 </div>
-                <div id="desktopnavbar">
+                <div id="desktop-nav-bar">
                     <div id="nav_bar" class="navbar-color d-flex flex-column flex-shrink-0 p-3">
                         <ul class="nav nav-pills flex-column mb-auto">
                             <li class="nav-item">
@@ -169,11 +169,26 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="./index.html">Home page</a></li>
                         <li class="breadcrumb-item"><a href="./ViewFeedbackList.html">View feedback</a></li>
-                        <li class="breadcrumb-item"><span class="link-item" onclick="window.history.back()">Feedback details</span></li>
+                        <li class="breadcrumb-item"><span class="link-item" onclick="window.history.back()">Feedback
+                                details</span></li>
                         <li class="breadcrumb-item active" aria-current="page">Questionnaire</li>
                     </ol>
                 </nav>
                 <div id="root"></div>
+                <div class="modal fade" id="Modal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="scoreModalLabel">Score</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p id="scoreMessage"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
         </section>
     </main>
