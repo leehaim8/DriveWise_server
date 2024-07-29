@@ -1,11 +1,10 @@
-let feedback;
 const query = location.search;
 const urlParams = new URLSearchParams(query);
 const feedbackID = parseInt(urlParams.get("feedbackid"));
 
 async function getQuestionnaire() {
     try {
-        const response = await fetch(`http://127.0.0.1:8080/api/questionnaire`);
+        const response = await fetch(`http://127.0.0.1:8080/api/questionnaire/${feedbackID}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -17,7 +16,6 @@ async function getQuestionnaire() {
 }
 
 const handleGetQuestionnaire = async () => {
-    feedback = await getFeedback(feedbackID);
     const response = await getQuestionnaire();
     render(response);
 };
@@ -26,7 +24,7 @@ window.onload = handleGetQuestionnaire;
 
 function render(questionnaire) {
     if (!questionnaire || questionnaire.length === 0) {
-        alert("No questionnaire data found");
+        console.log("No questionnaire data found");
         return;
     }
 
@@ -81,7 +79,7 @@ function render(questionnaire) {
     submitButton.classList.add("questionnaire-submit-btn");
     submitButton.setAttribute("type", "submit");
     submitButton.innerText = "Submit";
-    submitButton.onclick = async function () {
+    submitButton.onclick = function () {
         const question1Answer = +document.querySelector('input[name="question-1"]:checked').value;
         const question2Answer = +document.querySelector('input[name="question-2"]:checked').value;
         const question3Answer = +document.querySelector('input[name="question-3"]:checked').value;
@@ -92,41 +90,21 @@ function render(questionnaire) {
             +document.querySelectorAll('.question-item-option-hidden')[2].value,
         ];
 
-        if (question1Answer === correctAnswers[0] && question2Answer === correctAnswers[1] && question3Answer === correctAnswers[2]) {
-            await updateGradeTo100();
-        }
-        else {
-            alert("One or more of your answers are incorrect, please try again later");
-        }
-        navigateToViewFeedbackList();
+        let score = 0;
+        if (question1Answer === correctAnswers[0]) score++;
+        if (question2Answer === correctAnswers[1]) score++;
+        if (question3Answer === correctAnswers[2]) score++;
+
+        showModal(`Your score is: ${score} out of 3`);
     };
 
     rootElement.append(submitButton);
 }
 
-async function updateGradeTo100() {
-    try {
-        const response = await fetch(`http://127.0.0.1:8080/api/feedback/grade/${feedbackID}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ ...feedback, grade: 100 })
-        });
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return await response.json();
-    } catch (error) {
-        console.error('Error fetching questionnaire:', error);
-        return [];
-    }
-}
+function showModal(message) {
+    const scoreMessage = document.getElementById('scoreMessage');
+    scoreMessage.innerText = message;
 
-function navigateToViewFeedbackList() {
-    const currentUrl = new URL(window.location.href);
-    const queryParams = currentUrl.search;
-    const newPage = 'ViewFeedbackList.html';
-    const newUrl = `${currentUrl.origin}${currentUrl.pathname.replace(/[^/]*$/, newPage)}${queryParams}`;
-    window.location.href = newUrl;
+    const modal = new bootstrap.Modal(document.getElementById('Modal'));
+    modal.show();
 }

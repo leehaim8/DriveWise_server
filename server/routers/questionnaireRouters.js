@@ -3,6 +3,6 @@ const { questionnaireController } = require('../controllers/questionnaireControl
 
 const questionnaireRouter = Router();
 
-questionnaireRouter.get('/', questionnaireController.getQuestionnaire);
+questionnaireRouter.get('/:feedbackID', questionnaireController.getQuestionnaire);
 
 module.exports = { questionnaireRouter };
