@@ -1,16 +1,33 @@
 const query = location.search;
 const urlParams = new URLSearchParams(query);
-const feedbackId = parseInt(urlParams.get("feedbackid"));
+const feedbackID = parseInt(urlParams.get("feedbackid"));
+
+async function getQuestionnaire() {
+    try {
+        const response = await fetch(`http://127.0.0.1:8080/api/questionnaire/${feedbackID}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching questionnaire:', error);
+        return [];
+    }
+}
 
 const handleGetQuestionnaire = async () => {
     const response = await getQuestionnaire();
-    console.log("Questionnaire data received:", response);
     render(response);
 };
 
 window.onload = handleGetQuestionnaire;
 
 function render(questionnaire) {
+    if (!questionnaire || questionnaire.length === 0) {
+        alert("No questionnaire data found");
+        return;
+    }
+
     const questionnaireElement = document.createElement('div');
     questionnaireElement.classList.add('questionnaire-wrapper');
     let questionIndex = 0;
@@ -27,7 +44,7 @@ function render(questionnaire) {
         const options = [1, 2, 3];
         const optionsWrapper = document.createElement('div');
         optionsWrapper.classList.add('question-item-options');
-        
+
         for (let index of options) {
             const optionInput = document.createElement('input');
             optionInput.classList.add("question-item-option-input");
@@ -40,7 +57,7 @@ function render(questionnaire) {
             optionLabel.classList.add("question-item-option-label");
             optionLabel.setAttribute('for', `option-${questionIndex}-${index}`);
             optionLabel.innerText = question[`option${index}`];
-        
+
             optionsWrapper.append(optionInput);
             optionsWrapper.append(optionLabel);
         }
@@ -50,7 +67,7 @@ function render(questionnaire) {
         hiddenAnswerInput.classList.add("question-item-option-hidden");
         hiddenAnswerInput.type = "hidden";
         hiddenAnswerInput.value = question.correctAnswer;
-        
+
         questionElement.append(hiddenAnswerInput);
         questionnaireElement.append(questionElement);
     });
@@ -62,18 +79,23 @@ function render(questionnaire) {
     submitButton.classList.add("questionnaire-submit-btn");
     submitButton.setAttribute("type", "submit");
     submitButton.innerText = "Submit";
-    submitButton.onclick = function() {
-        // check the answers and do stuff...
-        console.log('hey!');
+    submitButton.onclick = function () {
         const question1Answer = +document.querySelector('input[name="question-1"]:checked').value;
         const question2Answer = +document.querySelector('input[name="question-2"]:checked').value;
+        const question3Answer = +document.querySelector('input[name="question-3"]:checked').value;
 
-        console.log(`question1Answer: ${question1Answer}`);
-        console.log(`question2Answer: ${question2Answer}`);
+        const correctAnswers = [
+            +document.querySelector('.question-item-option-hidden').value,
+            +document.querySelectorAll('.question-item-option-hidden')[1].value,
+            +document.querySelectorAll('.question-item-option-hidden')[2].value,
+        ];
 
-        if (question1Answer === questionnaire[0]["correctAnswer"] && question2Answer === questionnaire[1]["correctAnswer"]) {
-            console.log("WOW!");
-        }
+        let score = 0;
+        if (question1Answer === correctAnswers[0]) score++;
+        if (question2Answer === correctAnswers[1]) score++;
+        if (question3Answer === correctAnswers[2]) score++;
+
+        // alert(`Your score is: ${score} out of 3`);
     };
 
     rootElement.append(submitButton);

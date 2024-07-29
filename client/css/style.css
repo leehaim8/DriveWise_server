@@ -914,8 +914,14 @@ flex-flow: column;
 }
 
 .questionnaire-submit-btn {
-    margin: 3% auto;
-    display: block;
+    width: 100px;
+    height: 40px;
+    background-color: #d3d3d3;
+    color: #000000;
+    border: none;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-left: 400px ;
 }
 
 .question-item {
