@@ -19,12 +19,12 @@ const render = (data) => {
             parentSection.appendChild(checkDiv);
             const feedbackP = document.createElement("p");
             feedbackP.classList.add("feedback-text-title");
-            const feedbackTextless = document.createTextNode("Feedback for lesson " + feedback.lessonNumber + ": " + feedback.lessonTopic);
+            const feedbackTextLess = document.createTextNode("Feedback for lesson " + feedback.lessonNumber + ": " + feedback.lessonTopic);
             feedbackP.classList.add("feedback-text");
-            const feedbackTextgrade = document.createTextNode("Suggested grades: " + feedback.grade + "%");
-            feedbackP.appendChild(feedbackTextless);
+            const feedbackTextGrade = document.createTextNode("Suggested grades: " + feedback.grade + "%");
+            feedbackP.appendChild(feedbackTextLess);
             feedbackP.appendChild(document.createElement("br"));
-            feedbackP.appendChild(feedbackTextgrade);
+            feedbackP.appendChild(feedbackTextGrade);
             parentSection.appendChild(feedbackP);
 
             const feedbackIcons = document.createElement("div");
@@ -41,11 +41,11 @@ const render = (data) => {
                 feedbackIcons.appendChild(deleteBtn);
             }
 
-            const linkTofeedback = document.createElement("a");
-            linkTofeedback.href = `./oneFeefback.html?feedbackid=${feedback.feedbackID}`;
-            linkTofeedback.classList.add("feedback-one-icon");
-            linkTofeedback.classList.add("eye-icon-feedback");
-            feedbackIcons.appendChild(linkTofeedback);
+            const linkToFeedback = document.createElement("a");
+            linkToFeedback.href = `./oneFeefback.html?feedbackid=${feedback.feedbackID}`;
+            linkToFeedback.classList.add("feedback-one-icon");
+            linkToFeedback.classList.add("eye-icon-feedback");
+            feedbackIcons.appendChild(linkToFeedback);
             renderElement.appendChild(parentSection);
         });
         root.appendChild(renderElement);
@@ -66,11 +66,11 @@ async function loadPage() {
 
 function searchFeedback(ev) {
     const searchText = ev.target.value;
-    const findedList = new_data.filter((dt) => {
+    const findList = new_data.filter((dt) => {
         return dt.lessonTopic
             ?.toLowerCase()
             ?.includes(searchText?.toLowerCase());
     });
 
-    render(findedList);
+    render(findList);
 }

@@ -501,7 +501,7 @@ nav div {
     margin-right: 3%;
 }
 
-.simul-text, .feedback-text-title, .feedback-text{
+.simulation-text, .feedback-text-title, .feedback-text{
     flex: 1;
     font-size: 16px;
     font-family: sans-serif;
@@ -511,7 +511,7 @@ nav div {
     margin-top: 1rem;
 }
 
-.simul-icons, .feedback-icons {
+.simulation-icons, .feedback-icons {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -519,7 +519,7 @@ nav div {
     gap: 5%;
 }
 
-.simul-one-icon {
+.simulation-one-icon {
     min-width: 45px;
     min-height: 29px;
     background-color: #ebebeb;

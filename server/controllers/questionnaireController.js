@@ -2,7 +2,7 @@ const { dbConnection } = require('../dbConnection');
 
 const TABLE_NAME = "tbl_116";
 
-const qustionnareController = {
+const questionnaireController = {
     async getQuestionnaire(req, res) {
         let connection;
         try {
@@ -20,4 +20,4 @@ const qustionnareController = {
     }
 };
 
-module.exports = { qustionnareController };
+module.exports = { questionnaireController };
