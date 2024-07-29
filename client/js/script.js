@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (sessionStorage.getItem('user_id') && sessionStorage.getItem('user_type')) {
         const userId = sessionStorage.getItem('user_id');
         const userType = sessionStorage.getItem('user_type');
-        const response = await fetch(`http://127.0.0.1:8080/api/users/${userId}`);
+        const response = await fetch(`https://drivewise-server.onrender.com/api/users/${userId}`);
         const userData = await response.json();
         displayUserSpecificData(userData, userType);
     }
@@ -32,14 +32,14 @@ function displayUserSpecificData(userData, userType) {
         feedbackElements.forEach(el => el.hidden = true);
         addSimulationElements.forEach(el => el.hidden = false);
         studentsElements.forEach(el => el.hidden = false);
-        profilePicture.src = `http://localhost:8080/public/Drivinginstructor.jpg`;
+        profilePicture.src = `https://drivewise-server.onrender.com/public/Drivinginstructor.jpg`;
         profilePicture.alt = "Driving instructor profile picture";
 
     } else if (userType === 'Student') {
         feedbackElements.forEach(el => el.hidden = false);
         addSimulationElements.forEach(el => el.hidden = true);
         studentsElements.forEach(el => el.hidden = true);
-        profilePicture.src = `http://localhost:8080/public/Amitpick.svg`;
+        profilePicture.src = `https://drivewise-server.onrender.com/public/Amitpick.svg`;
         profilePicture.alt = "Driving student profile picture";
 
         const rectangleChangeElement = document.getElementById("rectangle-change");

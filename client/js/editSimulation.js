@@ -29,21 +29,6 @@ async function submitForm(event) {
     const perform = document.getElementById("perform").value;
     const score = document.getElementById("score").value;
 
-    // let data = {
-    //     simulationName: subject,
-    //     simulationAttempts: attempts,
-    //     simulationPerform: perform,
-    //     simulationScore: score,
-    //     simulationDetails: simulation.notes,
-    //     simulationFile: simulation.video
-    // };
-
-    // let errorMessage = validateData(data);
-    // if (errorMessage !== '') {
-    //     console.log(errorMessage);
-    //     return;
-    // }
-
     await updateFunc(simulationId, {
             "simulationName": subject,
             "simulationAttempts": attempts,

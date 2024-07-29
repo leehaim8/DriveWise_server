@@ -99,7 +99,7 @@ async function getWeather(city) {
 
 async function sendFeedbackToServer(data) {
     try {
-        const response = await fetch(`http://127.0.0.1:8080/api/feedback/${userId}`, {
+        const response = await fetch(`https://drivewise-server.onrender.com/api/feedback/${userId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

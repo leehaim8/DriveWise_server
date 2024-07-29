@@ -4,7 +4,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    const response = await fetch("http://127.0.0.1:8080/api/users/login", {
+    const response = await fetch("https://drivewise-server.onrender.com/api/users/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

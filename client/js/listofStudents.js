@@ -57,7 +57,7 @@ function searchStudent(ev) {
 }
 
 async function getStudents() {
-    const response = await fetch(`http://127.0.0.1:8080/api/users/students`);
+    const response = await fetch(`https://drivewise-server.onrender.com/api/users/students`);
     if (!response.ok) {
         console.error("Failed to fetch students:", response.statusText);
         return [];
