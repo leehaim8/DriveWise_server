@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const path = require("path");
 const port = process.env.PORT || 8080;
 
 const { simulationRouter } = require('./routers/simulationRouters');
@@ -10,6 +11,7 @@ const { questionnaireRouter } = require('./routers/questionnaireRouters');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/public", express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
     res.set("Access-Control-Allow-Origin", "*");
