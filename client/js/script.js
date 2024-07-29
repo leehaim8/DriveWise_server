@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-document.addEventListener("DOMContentLoaded", async function() {
+document.addEventListener("DOMContentLoaded", async function () {
     if (sessionStorage.getItem('user_id') && sessionStorage.getItem('user_type')) {
         const userId = sessionStorage.getItem('user_id');
         const userType = sessionStorage.getItem('user_type');
@@ -42,7 +42,7 @@ function displayUserSpecificData(userData, userType) {
         profilePicture.src = `http://localhost:8080/public/Amitpick.svg`;
         profilePicture.alt = "Driving student profile picture";
 
-        const rectangleChangeElement = document.getElementById("rectangale-change");
+        const rectangleChangeElement = document.getElementById("rectangle-change");
         if (rectangleChangeElement) {
             rectangleChangeElement.innerText = "Feedback";
         }
