@@ -4,7 +4,6 @@ const feedbackId = parseInt(urlParams.get("feedbackid"));
 
 const handleGetFeedback = async () => {
     const response = await getFeedback(feedbackId);
-    console.log("Feedback data received:", response);
     render(response);
 };
 

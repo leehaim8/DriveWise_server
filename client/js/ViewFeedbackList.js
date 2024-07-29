@@ -12,7 +12,6 @@ const render = (data) => {
 
     if (data.length > 0) {
         data.forEach((feedback) => {
-            console.log(feedback);
             const parentSection = document.createElement("section");
             parentSection.classList.add("feedback-item");
             const checkDiv = document.createElement("div");
