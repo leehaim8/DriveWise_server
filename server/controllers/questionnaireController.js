@@ -10,7 +10,7 @@ const qustionnareController = {
             const [rows] = await connection.execute(`SELECT * FROM ${TABLE_NAME}_questionnaire`);
             res.json(rows);
         } catch (error) {
-            console.error("Error in getFeedbacks:", error);
+            console.error("Error in getQuestionnaire:", error);
             res.status(500).json({ message: "Internal server error" });
         } finally {
             if (connection) {

@@ -5,6 +5,7 @@ const feedbackRouter = Router();
 
 feedbackRouter.get('/', feedbackController.getFeedbacks);
 feedbackRouter.get('/:id', feedbackController.getFeedback);
+feedbackRouter.put('/grade/:id', feedbackController.updateFeedbackGrade);
 feedbackRouter.post('/:userId', feedbackController.createFeedback);
 
 module.exports = { feedbackRouter };

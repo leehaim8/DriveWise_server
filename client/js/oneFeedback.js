@@ -81,6 +81,14 @@ function render(data) {
         detailsElement.appendChild(roadsItems);
         detailsElement.appendChild(correctDrivingItems);
         detailsElement.appendChild(teacherRemarksItems);
+
+        if (data.grade < 75) {
+            const questionnaireBtn = document.createElement('button');
+            questionnaireBtn.classList.add('link-button-q');
+            questionnaireBtn.onclick = navigateToQuestionnaire;
+            questionnaireBtn.innerText = 'Go to Questionnaire';
+            detailsElement.appendChild(questionnaireBtn);
+        }
         document.getElementById("root").appendChild(detailsElement);
     });
 }
@@ -96,4 +104,12 @@ function generateDetailItem(item) {
     row.appendChild(span);
     row.appendChild(paragraph);
     return row;
+}
+
+function navigateToQuestionnaire() {
+    const currentUrl = new URL(window.location.href);
+    const queryParams = currentUrl.search;
+    const newPage = 'oneQuestionnaire.html';
+    const newUrl = `${currentUrl.origin}${currentUrl.pathname.replace(/[^/]*$/, newPage)}${queryParams}`;
+    window.location.href = newUrl;
 }
