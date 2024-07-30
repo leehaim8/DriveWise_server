@@ -7,6 +7,10 @@ const userController = {
         let connection;
         try {
             const { id } = req.params;
+            if (!id) {
+                res.status(400).json({ error: 'Missing user id' });
+                return;
+            }
             connection = await dbConnection.createConnection();
             const [rows] = await connection.execute(`SELECT user_id, profile_image FROM ${TABLE_NAME}_users WHERE user_id = ?`, [id]);
             if (rows.length > 0) {
@@ -43,6 +47,10 @@ const userController = {
         let connection;
         try {
             const { username, password } = req.body;
+            if (!username || !password) {
+                res.status(400).json({ error: 'Missing username or password' });
+                return;
+            }
             connection = await dbConnection.createConnection();
             const [rows] = await connection.execute(`SELECT user_id, user_type FROM ${TABLE_NAME}_users WHERE user_name = ? AND user_password = ?`, [username, password]);
 
@@ -62,6 +70,10 @@ const userController = {
         let connection;
         try {
             const { username, password, firstName, lastName, userType } = req.body;
+            if (!username || !password || !firstName || !lastName || !userType) {
+                res.status(400).json({ error: 'Missing required fields' });
+                return;
+            }
             const profilePicture = 'profilePicture.png';
             connection = await dbConnection.createConnection();
             const [result] = await connection.execute(`INSERT INTO ${TABLE_NAME}_users (user_name, user_password, user_first_name, user_last_name, user_type, profile_image) VALUES (?,?,?,?,?,?)`, [username, password, firstName, lastName, userType, profilePicture]);
