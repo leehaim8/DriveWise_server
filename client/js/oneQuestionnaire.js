@@ -15,6 +15,28 @@ async function getQuestionnaire() {
     }
 }
 
+async function updateFeedbackScore(feedbackID, questionTopic, score) {
+    console.log('Updating feedback score:', feedbackID, questionTopic, score);
+    try {
+        const response = await fetch(`https://drivewise-server.onrender.com/api/feedback/${feedbackID}/${questionTopic}/score`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ score })
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const result = await response.json();
+        console.log('Feedback score updated:', result);
+    } catch (error) {
+        console.error('Error updating feedback score:', error);
+    }
+}
+
 const handleGetQuestionnaire = async () => {
     const response = await getQuestionnaire();
     render(response);
@@ -28,6 +50,7 @@ function render(questionnaire) {
         return;
     }
 
+    console.log('questionnaire:', questionnaire);
     const questionnaireElement = document.createElement('div');
     questionnaireElement.classList.add('questionnaire-wrapper');
     let questionIndex = 0;
@@ -38,7 +61,7 @@ function render(questionnaire) {
 
         const title = document.createElement('p');
         title.classList.add('question-item-title');
-        title.innerText = question.label;
+        title.innerText = question.questionText;
         questionElement.append(title);
 
         const options = [1, 2, 3];
@@ -53,10 +76,20 @@ function render(questionnaire) {
             optionInput.name = `question-${questionIndex}`;
             optionInput.value = index;
 
+            optionInput.addEventListener('change', async (event) => {
+                const selectedAnswer = +event.target.value;
+                const correctAnswer = +question.correctAnswer;
+                const questionTopic = question.questionTopic;
+                console.log('questionTopic:', questionTopic);
+                if (selectedAnswer === correctAnswer) {
+                    await updateFeedbackScore(feedbackID, questionTopic, 100);
+                }
+            });
+
             const optionLabel = document.createElement("label");
             optionLabel.classList.add("question-item-option-label");
             optionLabel.setAttribute('for', `option-${questionIndex}-${index}`);
-            optionLabel.innerText = question[`option${index}`];
+            optionLabel.innerText = question[`answer${index}`];
 
             optionsWrapper.append(optionInput);
             optionsWrapper.append(optionLabel);

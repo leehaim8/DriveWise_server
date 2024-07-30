@@ -65,7 +65,32 @@ const feedbackController = {
                 connection.end();
             }
         }
+    },
+    async updateFeedback(req, res) {
+        let connection;
+        try {
+            const { feedbackID, questionTopic } = req.params;
+            const { score } = req.body;
+
+            connection = await dbConnection.createConnection();
+            const [result] = await connection.execute(`UPDATE ${TABLE_NAME}_feedback SET ${questionTopic} = ? WHERE feedbackID = ?`, [score, feedbackID]);
+
+            if (result.affectedRows === 0) {
+                return res.status(404).send('Feedback or topic not found');
+            }
+
+            res.json({ message: 'Feedback score updated successfully' });
+
+        } catch (error) {
+            console.error('Error updating feedback score:', error);
+            res.status(500).send('Server error');
+        } finally {
+            if (connection) {
+                connection.end();
+            }
+        }
     }
+
 };
 
 module.exports = { feedbackController };
