@@ -21,33 +21,42 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 });
 
-function displayUserSpecificData(userData, userType) {
-    const feedbackElements = document.querySelectorAll(".feedback");
-    const addSimulationElements = document.querySelectorAll(".addSimulation");
-    const studentsElements = document.querySelectorAll(".Students");
+async function displayUserSpecificData(userId, userType) {
+    try {
+        const response = await fetch(`https://drivewise-server.onrender.com/api/users/${userId.user_id}`);
+        const userData = await response.json();
+        const profilePicture = document.getElementById("profile-picture");
 
-    const profilePicture = document.getElementById("profile-picture");
-
-    if (userType === 'Teacher') {
-        feedbackElements.forEach(el => el.hidden = true);
-        addSimulationElements.forEach(el => el.hidden = false);
-        studentsElements.forEach(el => el.hidden = false);
-        profilePicture.src = `https://drivewise-server.onrender.com/public/Drivinginstructor.jpg`;
-        profilePicture.alt = "Driving instructor profile picture";
-
-    } else if (userType === 'Student') {
-        feedbackElements.forEach(el => el.hidden = false);
-        addSimulationElements.forEach(el => el.hidden = true);
-        studentsElements.forEach(el => el.hidden = true);
-        profilePicture.src = `https://drivewise-server.onrender.com/public/Amitpick.svg`;
-        profilePicture.alt = "Driving student profile picture";
-
-        const rectangleChangeElement = document.getElementById("rectangle-change");
-        if (rectangleChangeElement) {
-            rectangleChangeElement.innerText = "Feedback";
+        if (userData.profile_image) {
+            profilePicture.src = `https://drivewise-server.onrender.com/public/${userData.profile_image}`;
+            profilePicture.alt = `${userType} profile picture`;
+            profilePicture.style.display = 'block';
         }
+
+        const feedbackElements = document.querySelectorAll(".feedback");
+        const addSimulationElements = document.querySelectorAll(".addSimulation");
+        const studentsElements = document.querySelectorAll(".Students");
+
+        if (userType === 'Teacher') {
+            feedbackElements.forEach(el => el.hidden = true);
+            addSimulationElements.forEach(el => el.hidden = false);
+            studentsElements.forEach(el => el.hidden = false);
+        } else if (userType === 'Student') {
+            feedbackElements.forEach(el => el.hidden = false);
+            addSimulationElements.forEach(el => el.hidden = true);
+            studentsElements.forEach(el => el.hidden = true);
+
+            const rectangleChangeElement = document.getElementById("rectangle-change");
+            if (rectangleChangeElement) {
+                rectangleChangeElement.innerText = "Feedback";
+            }
+        }
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        logout();
     }
 }
+
 
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".logoutButton").forEach(button => {

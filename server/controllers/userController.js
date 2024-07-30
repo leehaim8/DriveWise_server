@@ -7,10 +7,8 @@ const userController = {
         let connection;
         try {
             const { id } = req.params;
-
             connection = await dbConnection.createConnection();
             const [rows] = await connection.execute(`SELECT user_id, profile_image FROM ${TABLE_NAME}_users WHERE user_id = ?`, [id]);
-
             if (rows.length > 0) {
                 const user = rows[0];
                 res.json(user);
@@ -54,6 +52,21 @@ const userController = {
             } else {
                 res.status(401).json({ error: 'Invalid username or password' });
             }
+        } catch (error) {
+            res.status(500).json({ message: "Internal server error" });
+        } finally {
+            connection.end();
+        }
+    },
+    async register(req, res) {
+        let connection;
+        try {
+            const { username, password, firstName, lastName, userType } = req.body;
+            const profilePicture = 'profilePicture.png';
+            connection = await dbConnection.createConnection();
+            const [result] = await connection.execute(`INSERT INTO ${TABLE_NAME}_users (user_name, user_password, user_first_name, user_last_name, user_type, profile_image) VALUES (?,?,?,?,?,?)`, [username, password, firstName, lastName, userType, profilePicture]);
+
+            res.json({ userId: result.insertId });
         } catch (error) {
             res.status(500).json({ message: "Internal server error" });
         } finally {

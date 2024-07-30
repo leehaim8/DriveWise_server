@@ -5,6 +5,7 @@ const userRouter = Router();
 
 userRouter.get('/students', userController.getStudents);
 userRouter.get('/:id', userController.getUser);
+userRouter.post('/register', userController.register);
 userRouter.post('/login', userController.login);
 
 module.exports = { userRouter };

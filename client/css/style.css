@@ -130,9 +130,10 @@ body {
 }
 
 .login-container {
+    position: relative;
     width: 400px;
     background-color: #fff;
-    margin: 300px auto;
+    margin: 200px auto;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -173,6 +174,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 15px;
+    margin-bottom: 10px;
 }
 
 .login-container button:hover {
@@ -186,6 +188,28 @@ body {
 
 .hidden {
     display: none;
+}
+
+#registration-form label {
+    margin-bottom: 5px;
+}
+
+#registration-form input{
+    width: 70%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+#registration-form #user-type {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    margin-left: 9px;
+    width: 75%;
+    padding: 10px;
+    border: 1px solid #ccc;
 }
 
 #content {
