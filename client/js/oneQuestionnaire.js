@@ -31,7 +31,6 @@ async function updateFeedbackScore(feedbackID, questionTopic, score) {
         }
 
         const result = await response.json();
-        console.log('Feedback score updated:', result);
     } catch (error) {
         console.error('Error updating feedback score:', error);
     }
@@ -50,7 +49,6 @@ function render(questionnaire) {
         return;
     }
 
-    console.log('questionnaire:', questionnaire);
     const questionnaireElement = document.createElement('div');
     questionnaireElement.classList.add('questionnaire-wrapper');
     let questionIndex = 0;
@@ -80,7 +78,6 @@ function render(questionnaire) {
                 const selectedAnswer = +event.target.value;
                 const correctAnswer = +question.correctAnswer;
                 const questionTopic = question.questionTopic;
-                console.log('questionTopic:', questionTopic);
                 if (selectedAnswer === correctAnswer) {
                     await updateFeedbackScore(feedbackID, questionTopic, 100);
                 }
@@ -140,4 +137,11 @@ function showModal(message) {
 
     const modal = new bootstrap.Modal(document.getElementById('Modal'));
     modal.show();
+
+    const closeButton = document.querySelector('#Modal .btn-close');
+    if (closeButton) {
+        closeButton.addEventListener('click', () => {
+            window.location.href = 'ViewFeedbackList.html';
+        });
+    }
 }
