@@ -106,15 +106,11 @@ const simulationController = {
         let connection;
         try {
             const { id } = req.params;
-            const [simulationId] = await connection.execute(`SELECT id FROM ${TABLE_NAME}_simulations WHERE id = ?`, [id]);
-            if (simulationId.length === 0) {
-                res.status(404).json({ message: "Simulation not found" });
-                return;
-            }
             connection = await dbConnection.createConnection();
             const [rows] = await connection.execute(`SELECT simulationName FROM ${TABLE_NAME}_simulations WHERE id = ?`, [id]);
             if (rows.length === 0) {
-                throw new Error('Simulation not found');
+                res.status(404).json({ message: "Simulation not found" });
+                return;
             }
             const simulationName = rows[0].simulationName;
             await connection.execute(`DELETE FROM ${TABLE_NAME}_simulations WHERE simulationName = ?`, [simulationName]);
