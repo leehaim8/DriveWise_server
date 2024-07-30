@@ -7,6 +7,10 @@ const simulationController = {
         let connection;
         try {
             const { user_id } = req.query;
+            if (!user_id) {
+                res.status(400).json({ message: "User ID is required" });
+                return;
+            }
             connection = await dbConnection.createConnection();
             const [rows] = await connection.execute(`SELECT s.id, s.user_id, s.simulationName, s.attempts, DATE_FORMAT(s.perform, '%Y-%m-%d') AS perform, s.score, s.notes, s.video FROM ${TABLE_NAME}_simulations s INNER JOIN ${TABLE_NAME}_users u ON s.user_id = u.user_id WHERE s.user_id = ?`, [user_id]);
             res.json(rows);
@@ -24,6 +28,10 @@ const simulationController = {
         try {
             const { id } = req.params;
             const { user_id } = req.query;
+            if (!user_id) {
+                res.status(400).json({ message: "User ID is required" });
+                return;
+            }
             connection = await dbConnection.createConnection();
             const [rows] = await connection.execute(`SELECT id, user_id, simulationName, attempts, DATE_FORMAT(perform, '%Y-%m-%d') AS perform, score, notes, video FROM ${TABLE_NAME}_simulations WHERE id = ? and user_id = ?`, [id, user_id]);
 
@@ -77,6 +85,10 @@ const simulationController = {
             }
             const { id } = req.params;
             const { user_id } = req.query;
+            if (!user_id) {
+                res.status(400).json({ message: "User ID is required" });
+                return;
+            }
             connection = await dbConnection.createConnection();
             await connection.execute(`UPDATE ${TABLE_NAME}_simulations SET user_id = ?, simulationName = ?, attempts = ?, perform = ?, score = ?, notes = ?, video = ? WHERE id = ?`, [user_id, req.body.simulationName, req.body.simulationAttempts, req.body.simulationPerform, req.body.simulationScore, req.body.simulationDetails, req.body.simulationFile, id]);
             const [simulation] = await connection.execute(`SELECT id, user_id, simulationName, attempts, DATE_FORMAT(perform, '%Y-%m-%d') AS perform, score, notes, video FROM ${TABLE_NAME}_simulations WHERE id = ?`, [id]);
