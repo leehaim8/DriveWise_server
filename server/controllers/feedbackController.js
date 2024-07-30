@@ -7,6 +7,10 @@ const feedbackController = {
         let connection;
         try {
             const { user_id } = req.query;
+            if (!user_id) {
+                res.status(400).json({ message: "User ID is required" });
+                return;
+            }
             connection = await dbConnection.createConnection();
             const [rows] = await connection.execute(`SELECT * FROM ${TABLE_NAME}_feedback f INNER JOIN ${TABLE_NAME}_users u ON f.userID = u.user_id WHERE f.userID = ?`, [user_id]);
             res.json(rows);
@@ -24,6 +28,10 @@ const feedbackController = {
         try {
             const { id } = req.params;
             const { user_id } = req.query;
+            if (!user_id) {
+                res.status(400).json({ message: "User ID is required" });
+                return;
+            }
             connection = await dbConnection.createConnection();
             const [rows] = await connection.execute(`SELECT * FROM ${TABLE_NAME}_feedback WHERE feedbackID = ? and userID = ?`, [id, user_id]);
 
