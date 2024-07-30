@@ -71,7 +71,10 @@ const feedbackController = {
         try {
             const { feedbackID, questionTopic } = req.params;
             const { score } = req.body;
-
+            if (!score) {
+                res.status(400).json({ message: "Score is required" });
+                return;
+            }
             connection = await dbConnection.createConnection();
             const [result] = await connection.execute(`UPDATE ${TABLE_NAME}_feedback SET ${questionTopic} = ? WHERE feedbackID = ?`, [score, feedbackID]);
 

@@ -7,10 +7,6 @@ const userController = {
         let connection;
         try {
             const { id } = req.params;
-            if (!id) {
-                res.status(400).json({ error: 'Missing user id' });
-                return;
-            }
             connection = await dbConnection.createConnection();
             const [rows] = await connection.execute(`SELECT user_id, profile_image FROM ${TABLE_NAME}_users WHERE user_id = ?`, [id]);
             if (rows.length > 0) {
