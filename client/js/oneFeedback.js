@@ -118,13 +118,12 @@ function render(data) {
         detailsElement.appendChild(TemperatureItems);
         detailsElement.appendChild(teacherRemarksItems);
 
-        if (data.grade < 75) {
-            const questionnaireBtn = document.createElement('button');
-            questionnaireBtn.classList.add('link-button-q');
-            questionnaireBtn.onclick = navigateToQuestionnaire;
-            questionnaireBtn.innerText = 'Go to Questionnaire';
-            detailsElement.appendChild(questionnaireBtn);
-        }
+
+        const questionnaireBtn = document.createElement('button');
+        questionnaireBtn.classList.add('link-button-q');
+        questionnaireBtn.onclick = navigateToQuestionnaire;
+        questionnaireBtn.innerText = 'Go to Questionnaire';
+        detailsElement.appendChild(questionnaireBtn);
         document.getElementById("root").appendChild(detailsElement);
     });
 }
