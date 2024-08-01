@@ -79,19 +79,14 @@ const simulationController = {
     async updateSimulation(req, res) {
         let connection;
         try {
-            if (!req.body.simulationName || !req.body.simulationAttempts || !req.body.simulationPerform || !req.body.simulationScore || !req.body.simulationDetails || !req.body.simulationFile) {
+            if (!req.body.simulationName || !req.body.simulationAttempts || !req.body.simulationPerform || !req.body.simulationScore) {
                 res.status(400).json({ message: "Missing required fields" });
                 return;
             }
             const { id } = req.params;
-            const { user_id } = req.query;
-            if (!user_id) {
-                res.status(400).json({ message: "User ID is required" });
-                return;
-            }
             connection = await dbConnection.createConnection();
-            await connection.execute(`UPDATE ${TABLE_NAME}_simulations SET user_id = ?, simulationName = ?, attempts = ?, perform = ?, score = ?, notes = ?, video = ? WHERE id = ?`, [user_id, req.body.simulationName, req.body.simulationAttempts, req.body.simulationPerform, req.body.simulationScore, req.body.simulationDetails, req.body.simulationFile, id]);
-            const [simulation] = await connection.execute(`SELECT id, user_id, simulationName, attempts, DATE_FORMAT(perform, '%Y-%m-%d') AS perform, score, notes, video FROM ${TABLE_NAME}_simulations WHERE id = ?`, [id]);
+            await connection.execute(`UPDATE ${TABLE_NAME}_simulations SET simulationName = ?, attempts = ?, perform = ?, score = ? WHERE id = ?`, [req.body.simulationName, req.body.simulationAttempts, req.body.simulationPerform, req.body.simulationScore, id]);
+            const [simulation] = await connection.execute(`SELECT id, simulationName, attempts, DATE_FORMAT(perform, '%Y-%m-%d') AS perform, score, notes, video FROM ${TABLE_NAME}_simulations WHERE id = ?`, [id]);
             res.json(simulation[0]);
         } catch (error) {
             console.error("Error in updateSimulation:", error);

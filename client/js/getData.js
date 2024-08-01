@@ -27,7 +27,7 @@ async function getFeedback(id) {
 }
 
 async function updateFunc(id, data) {
-    const response = await fetch(`https://drivewise-server.onrender.com/api/simulations/${id}?user_id=${userId}`, {
+    const response = await fetch(`https://drivewise-server.onrender.com/api/simulations/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",

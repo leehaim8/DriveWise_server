@@ -1,4 +1,7 @@
 let simulation;
+const query = location.search;
+const urlParams = new URLSearchParams(query);
+const simulationId = parseInt(urlParams.get("simulationid"));
 
 function render(data) {
     simulation = data;
@@ -26,16 +29,17 @@ async function submitForm(event) {
 
     const subject = document.getElementById("subject").value;
     const attempts = document.getElementById("attempts").value;
-    const perform = document.getElementById("perform").value;
+    let perform = document.getElementById("perform").value;
+    const dateParts = perform.split('-');
+    perform = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
     const score = document.getElementById("score").value;
 
+    console.log(subject, attempts, perform, score);
     await updateFunc(simulationId, {
             "simulationName": subject,
             "simulationAttempts": attempts,
             "simulationPerform": perform,
-            "simulationScore": score,
-            "simulationDetails": simulation.notes,
-            "simulationFile": simulation.video
+            "simulationScore": score
     });
 
     window.location.href = './listBasicSimulation.html';
