@@ -36,13 +36,13 @@ async function submitForm(event) {
 
     console.log(subject, attempts, perform, score);
     await updateFunc(simulationId, {
-            "simulationName": subject,
-            "simulationAttempts": attempts,
-            "simulationPerform": perform,
-            "simulationScore": score
+        "simulationName": subject,
+        "simulationAttempts": attempts,
+        "simulationPerform": perform,
+        "simulationScore": score
     });
 
-    window.location.href = './listBasicSimulation.html';
+    window.location.href = './listbasicSimulation.html';
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
