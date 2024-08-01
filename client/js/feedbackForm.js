@@ -127,7 +127,7 @@ function setupRangeInput() {
             max: 100,
             value: 50,
             unit: "",
-            width: "75%",
+            width: "70%",
             design: "2d",
             showMinMaxLabels: true,
             showCurrentValueLabel: true,
