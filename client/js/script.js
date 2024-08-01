@@ -49,6 +49,7 @@ async function displayUserSpecificData(userId, userType) {
             const rectangleChangeElement = document.getElementById("rectangle-change");
             if (rectangleChangeElement) {
                 rectangleChangeElement.innerText = "Feedback";
+                rectangleChangeElement.href = "ViewFeedbackList.html";
             }
         }
     } catch (error) {

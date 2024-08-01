@@ -84,7 +84,7 @@ const feedbackController = {
                 return;
             }
             connection = await dbConnection.createConnection();
-            const [result] = await connection.execute(`UPDATE ${TABLE_NAME}_feedback SET ${questionTopic} = ? WHERE feedbackID = ?`, [score, feedbackID]);
+            const [result] = await connection.execute(`UPDATE ${TABLE_NAME}_feedback SET ${questionTopic} = ?, grade = grade + 5 WHERE feedbackID = ? and (grade + 5) <= 100`, [score, feedbackID]);
 
             if (result.affectedRows === 0) {
                 return res.status(404).send('Feedback or topic not found');
