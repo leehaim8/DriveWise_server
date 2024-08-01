@@ -44,7 +44,7 @@ const handleDeleteSimulation = async (simulationId) => {
     new_data = new_data.filter((dt) => {
         return dt.id !== simulationId;
     });
-    fetch(`https://drivewise-server.onrender.com/api/simulations/${simulationid}?user_id=${userId}`, {
+    fetch(`https://drivewise-server.onrender.com/api/simulations/${simulationId}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
